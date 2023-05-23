@@ -1,0 +1,2 @@
+--create initial database
+CREATE DATABASE library;
