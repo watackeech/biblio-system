@@ -1,4 +1,5 @@
 -- current_stockの更新
+-- 0冊のところがなぜか更新されない。。。。
 BEGIN TRANSACTION;
     UPDATE book_master
     SET current_stock =
