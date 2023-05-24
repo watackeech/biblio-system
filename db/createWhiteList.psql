@@ -1,0 +1,17 @@
+-- 管理者権限のあるUserを格納するホワイトリストの作成
+
+BEGIN TRANSACTION;
+
+    CREATE TABLE white_list (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) references users(id)
+    );
+
+    INSERT INTO white_list (user_id) VALUES (1);
+    INSERT INTO white_list (user_id) VALUES (2);
+    INSERT INTO white_list (user_id) VALUES (10);
+
+    SELECT * FROM white_list;
+
+COMMIT;

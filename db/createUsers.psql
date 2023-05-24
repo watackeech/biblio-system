@@ -1,0 +1,27 @@
+-- user_table の作成＆ダミーデータ挿入
+
+BEGIN TRANSACTION;
+
+    CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    password VARCHAR(31),
+    name VARCHAR(63),
+    grade INTEGER
+    );
+
+    INSERT INTO users (password, name, grade)
+    VALUES
+    ('lion123', 'サトウ', 4),
+    ('tiger456', 'タナカ', 2),
+    ('elephant789', 'イシカワ', 6),
+    ('giraffe012', 'ヤマモト', 1),
+    ('zebra345', 'スズキ', 3),
+    ('monkey678', 'ワタナベ', 5),
+    ('panda901', 'クマモト', 2),
+    ('koala234', 'キムラ', 4),
+    ('hippo567', 'ナカジマ', 3),
+    ('rhino890', 'カワムラ', 6);
+
+    -- 正しく挿入できているかを確認
+    select * from users;
+COMMIT;
