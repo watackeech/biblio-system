@@ -1,22 +1,27 @@
 -- current_stockの更新
 BEGIN TRANSACTION;
     UPDATE book_master
-    SET current_stock = subquery.stock_count
+    SET current_stock =
+    case
+        when subquery.stock_count IS NULL then 0
+        else subquery.stock_count  end
     FROM (
     SELECT master_id, COUNT(*) AS stock_count
     FROM books
     WHERE status = 'in_stock'
     GROUP BY master_id
+    HAVING COUNT(*) > 0
     ) AS subquery
     WHERE book_master.id = subquery.master_id;
 
     --正しくアップデートできているかの確認
+    select * from book_master order by id;
     SELECT master_id, COUNT(*) AS stock_count
     FROM books
     WHERE status = 'in_stock'
     GROUP BY master_id
     ORDER BY master_id;
-    select * from book_master order by id;
+
 COMMIT;
 
 -- total_stockの更新

@@ -2,8 +2,9 @@
 
 CREATE TABLE books (
   id SERIAL PRIMARY KEY,
-  FOREIGN KEY master_id INTEGER NOT NULL,
-  status VARCHAR(10) DEFAULT 'in_stock'
+  master_id INTEGER NOT NULL,
+  FOREIGN KEY (master_id) references book_master(id),
+  status VARCHAR(15) DEFAULT 'in_stock'
 );
 
 BEGIN TRANSACTION;
