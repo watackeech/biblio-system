@@ -1,24 +1,45 @@
 -- テーブル作成＆ダミーデータを挿入
 
-CREATE TABLE books (
-  id SERIAL PRIMARY KEY,
-  master_id INTEGER NOT NULL,
-  FOREIGN KEY (master_id) references book_master(id),
-  status VARCHAR(15) DEFAULT 'in_stock'
-);
+-- CREATE TABLE books (
+--   id SERIAL PRIMARY KEY,
+--   master_id INTEGER NOT NULL,
+--   FOREIGN KEY (master_id) references book_master(id),
+--   status VARCHAR(15) DEFAULT 'in_stock'
+-- );
 
 BEGIN TRANSACTION;
     INSERT INTO books (master_id, status)
     SELECT
-    --master_id をランダム生成
+    -- master_id をランダム生成
     (floor(random() * 20) + 1)::INTEGER,
-    -- statusをランダム生成
-    case when random() < 0.5 then 'in_stock' else 'borrowed' end as status
-    FROM generate_series(1, 50);
+    -- status をランダム生成
+    CASE WHEN random() < 0.5 THEN 'in_stock' ELSE 'borrowed' END AS status
+    FROM generate_series(1, 100);
 
-    select * from books;
-    select master_id, count(master_id) as count
-    from books
-    group by master_id
-    order by master_id;
-COMMIT;
+    SELECT * FROM books;
+    SELECT master_id, COUNT(*) AS count
+    FROM books
+    GROUP BY master_id
+    ORDER BY master_id;
+
+    SELECT b.master_id, COALESCE(c.current_count, 0), t.total_count
+    FROM (
+        SELECT master_id,
+        COUNT(*) AS current_count
+        FROM books
+        WHERE status = 'in_stock'
+        GROUP BY master_id
+    ) AS c
+    RIGHT JOIN (
+        SELECT master_id, COUNT(*) AS total_count
+        FROM books
+        GROUP BY master_id
+    ) AS t ON c.master_id = t.master_id
+    JOIN (
+        SELECT master_id, COUNT(*) AS total_count
+        FROM books
+        GROUP BY master_id
+    ) AS b ON t.master_id = b.master_id
+    ORDER BY b.master_id;
+-- COMMIT;
+
