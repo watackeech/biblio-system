@@ -1,4 +1,4 @@
-package DAOs;
+// package DAOs;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class BookMasterDAO {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, "SHIFT-JIS");
         System.out.println("書籍のマスターIDを入力してください");
         int masterId = scanner.nextInt();
         System.out.println("やりたい操作を教えてください");
@@ -100,5 +100,4 @@ public class BookMasterDAO {
             }
         }
     }
-
 }

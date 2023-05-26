@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": [
-        "src"
+        "server/src",
+        "src/DAOs"
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
