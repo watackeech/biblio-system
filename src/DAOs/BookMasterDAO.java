@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
-public class BookMasterDAO {
+public class BookMasterDAO implements DAO {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in, "SHIFT-JIS");
         System.out.println("書籍のマスターIDを入力してください");
@@ -15,12 +17,12 @@ public class BookMasterDAO {
         System.out.println("SHOW:1 INSERT:2 UPDATE:3 DELETE:4");
         int mode = scanner.nextInt();
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            System.out.println("ドライバーのロードに成功しました");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("ドライバーのロードに失敗しました", e);
-        }
+        // try {
+        // Class.forName("org.postgresql.Driver");
+        // System.out.println("ドライバーのロードに成功しました");
+        // } catch (ClassNotFoundException e) {
+        // throw new RuntimeException("ドライバーのロードに失敗しました", e);
+        // }
 
         ConnectionManager connectionManager = new ConnectionManager();
 
@@ -99,5 +101,73 @@ public class BookMasterDAO {
         } finally {
             connectionManager.closeConnection();
         }
+    }
+
+    // @Override
+    // public List<BookMaster> select(BookMaster bookMaster) {
+    // List<BookMaster> result;
+    // return result;
+    // throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+    // }
+
+    @Override
+    public void insert(Object entity) throws SQLException {
+        throw new UnsupportedOperationException("Unimplemented method 'insert'");
+    }
+
+    @Override
+    public void update(Object entity) throws SQLException {
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public void delete(Object entity) throws SQLException {
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public List select(Object entity) throws SQLException {
+
+        List<BookMaster> result = null;
+        return result;
+        // throw new UnsupportedOperationException("Unimplemented method 'select'");
+    }
+
+    @Override
+    public List<BookMaster> getAll() throws SQLException {
+        ConnectionManager connectionManager = new ConnectionManager();
+
+        try {
+            Connection connection = connectionManager.getConnection();
+            PreparedStatement preparedStatement = null;
+            try {
+                String sql = "SELECT id, title, author, publication_year FROM book_master";
+                // SQLの作成(準備)
+                preparedStatement = connection.prepareStatement(sql);
+                // preparedStatement.setInt(1, masterId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                System.out.println(resultSet);
+                while (resultSet.next()) {
+                    System.out.println("id:" + resultSet.getInt("id"));
+                    System.out.println("title:" + resultSet.getString("title"));
+                    System.out.println("author:" + resultSet.getString("author"));
+                    System.out.println("publication_year:" + resultSet.getInt("publication_year"));
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("EMPLOYEEテーブルのINSERTに失敗しました", e);
+            } finally {
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.close();
+                        System.out.println("ステートメントの解放に成功しました");
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException("ステートメントの解放に失敗しました", e);
+                }
+            }
+        } finally {
+            connectionManager.closeConnection();
+        }
+        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
     }
 }
