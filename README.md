@@ -1,4 +1,7 @@
-## テスト～～～～
+## 文字化け地獄ブランチ
+WindowsにインストールしたJavaを叩いている限り、文字化けからは逃げ出せない
+→Docker環境をたくまから拝借した
+Dockerを急ぎ自分で勉強して、自立できるように頑張る
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
