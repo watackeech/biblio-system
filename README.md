@@ -1,21 +1,26 @@
-## 文字化け地獄ブランチ
-WindowsにインストールしたJavaを叩いている限り、文字化けからは逃げ出せない
-→Docker環境をたくまから拝借した
-Dockerを急ぎ自分で勉強して、自立できるように頑張る
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+# WEBアプリケーション with java
+## はじめに
+    docker-compose build
+    docker-compose up -d
+## データベースへのアクセス方法
+### その１
+    docker-compose exec db psql -U bc -W web_java
+### その２
+    docker-compose ps -q db
+    docker exec -it <container_id> psql -U bc -W web_java
+## javaの実行
+    docker-compose exec java bash
+# その他（忘備録用）
+## ビルドができない場合
+### 事例１　　ディレクトリをマウントする権限が足りてない
+1. Docker Desktopを開く
+2. Settingを開く
+3. Resourcesを開く
+4. File sharingを開く
+5. +でマウントする場所を追加
+他にもchmodコマンドでdockerの権限をつよつよにする方法もある
+## クラスパスを通す(環境ファイルに記述済みのため今は不要)
+### 方法１
+    export CLASSPATH=postgresql-42.6.0.jar:$CLASSPATH
+### 方法２
+    java -cp ./:postgresql-42.6.0.jar  Main
