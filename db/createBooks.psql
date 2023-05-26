@@ -1,11 +1,11 @@
 -- テーブル作成＆ダミーデータを挿入
 
--- CREATE TABLE books (
---   id SERIAL PRIMARY KEY,
---   master_id INTEGER NOT NULL,
---   FOREIGN KEY (master_id) references book_master(id),
---   status VARCHAR(15) DEFAULT 'in_stock'
--- );
+CREATE TABLE books (
+  id SERIAL PRIMARY KEY,
+  master_id INTEGER NOT NULL,
+  FOREIGN KEY (master_id) references book_master(id),
+  status VARCHAR(15) DEFAULT 'in_stock'
+);
 
 BEGIN TRANSACTION;
     INSERT INTO books (master_id, status)
