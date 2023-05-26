@@ -17,21 +17,18 @@ public class BookMasterDAO {
         System.out.println("やりたい操作を教えてください");
         System.out.println("SHOW:1 INSERT:2 UPDATE:3 DELETE:4");
         int mode = scanner.nextInt();
+
         try {
             Class.forName("org.postgresql.Driver");
             System.out.println("ドライバーのロードに成功しました");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("ドライバーのロードに失敗しました", e);
         }
-        Connection connection = null;
+
+        ConnectionManager connectionManager = new ConnectionManager();
+
         try {
-            String url = "jdbc:postgresql://localhost:5432/library";
-            String user = "postgres";
-            String password = "41572020";
-
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("データベースの接続に成功しました");
-
+            Connection connection = connectionManager.getConnection();
             // ステートメントの定義
             PreparedStatement preparedStatement = null;
             try {
@@ -102,18 +99,8 @@ public class BookMasterDAO {
                     throw new RuntimeException("ステートメントの解放に失敗しました", e);
                 }
             }
-        } catch (SQLException e) {
-            throw new RuntimeException("データベースの接続に失敗しました", e);
         } finally {
-
-            try {
-                if (connection != null) {
-                    connection.close();
-                    System.out.println("データベースの切断に成功しました");
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException("データベースの切断に失敗しました", e);
-            }
+            connectionManager.closeConnection();
         }
     }
 }

@@ -26,19 +26,19 @@ public class ConnectionManager {
 	private static final String DRIVER_NAME = "org.postgresql.Driver";
 
 	/**
-	 * 接続URL
+	 * 接続
 	 */
-	private static final String URL = "jdbc:postgresql://localhost:5432/jdbc";
+	private static final String URL = "jdbc:postgresql://localhost:5432/library";
 
 	/**
 	 * 接続ユーザ
 	 */
-	private static final String USER = "jdbc";
+	private static final String USER = "postgres";
 
 	/**
 	 * 接続パスワード
 	 */
-	private static final String PASSWORD = "jdbc";
+	private static final String PASSWORD = "41572020";
 
 	static {
 		try {
