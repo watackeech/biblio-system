@@ -1,15 +1,19 @@
 public class BookMaster {
-    private int id;
+    private Integer id;
     private String title;
     private String author;
-    private int currentStock;
-    private int totalStock;
-    private int publicationYear;
+    private Integer totalStock;
+    private Integer currentStock;
+    private Integer publicationYear;
     private String category;
     private String description;
     private String image;
 
-    public BookMaster(int id, String title, String author, int currentStock, int totalStock, int publicationYear,
+    public BookMaster() {
+    }
+
+    public BookMaster(Integer id, String title, String author, Integer currentStock, Integer totalStock,
+            Integer publicationYear,
             String category, String description, String image) {
         this.id = id;
         this.title = title;
@@ -22,11 +26,11 @@ public class BookMaster {
         this.image = image;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,27 +50,27 @@ public class BookMaster {
         this.author = author;
     }
 
-    public int getCurrentStock() {
+    public Integer getCurrentStock() {
         return currentStock;
     }
 
-    public void setCurrentStock(int currentStock) {
+    public void setCurrentStock(Integer currentStock) {
         this.currentStock = currentStock;
     }
 
-    public int getTotalStock() {
+    public Integer getTotalStock() {
         return totalStock;
     }
 
-    public void setTotalStock(int totalStock) {
+    public void setTotalStock(Integer totalStock) {
         this.totalStock = totalStock;
     }
 
-    public int getPublicationYear() {
+    public Integer getPublicationYear() {
         return publicationYear;
     }
 
-    public void setPublicationYear(int publicationYear) {
+    public void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
     }
 

@@ -9,6 +9,11 @@ public class App {
         // System.out.println("SHOW:1 INSERT:2 UPDATE:3 DELETE:4");
         // int mode = scanner.nextInt();
         BookMasterDAO bookMasterDAO = new BookMasterDAO();
-        bookMasterDAO.getAll();
+        // bookMasterDAO.getAll();
+        BookMaster bookCondition = new BookMaster();
+        bookCondition.setId(3);
+        bookCondition.setAuthor("夏目漱石");
+        // bookCondition.setPublicationYear(1999);
+        bookMasterDAO.select(bookCondition);
     }
 }

@@ -6,96 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+// import java.util.Scanner;
 
 public class BookMasterDAO implements DAO<BookMaster> {
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in, "SHIFT-JIS");
-        System.out.println("書籍のマスターIDを入力してください");
-        int masterId = scanner.nextInt();
-        System.out.println("やりたい操作を教えてください");
-        System.out.println("SHOW:1 INSERT:2 UPDATE:3 DELETE:4");
-        int mode = scanner.nextInt();
-
-        ConnectionManager connectionManager = new ConnectionManager();
-
-        try {
-            Connection connection = connectionManager.getConnection();
-            // ステートメントの定義
-            PreparedStatement preparedStatement = null;
-            try {
-                String sql;
-                if (mode == 1) { // TODO SELECT用の分岐
-                    sql = "SELECT id, title, author, publication_year FROM book_master WHERE id = ?";
-                    // SQLの作成(準備)
-                    preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setInt(1, masterId);
-                    ResultSet resultSet = preparedStatement.executeQuery();
-                    System.out.println(resultSet);
-                    while (resultSet.next()) {
-                        System.out.println("id:" + resultSet.getInt("id"));
-                        System.out.println("title:" + resultSet.getString("title"));
-                        System.out.println("author:" + resultSet.getString("author"));
-                        System.out.println("publication_year:" + resultSet.getInt("publication_year"));
-                    }
-                } else { // TODO INSERT UPDATE DELETE用の分岐
-                    if (mode == 4) {
-                        sql = "DELETE FROM book_master WHERE id = ?";
-                        // SQLの作成(準備)
-                        preparedStatement = connection.prepareStatement(sql);
-                        // SQLバインド変数への値設定
-                        preparedStatement.setInt(1, masterId);
-                    }
-                    System.out.println("タイトルを入力してください");
-                    String title = scanner.next();
-                    System.out.println("著者を入力してください");
-                    String author = scanner.next();
-                    System.out.println("出版年を入力してください");
-                    int publication_year = scanner.nextInt();
-                    switch (mode) {
-                        case 2:
-                            sql = "INSERT INTO book_master ( id, title, author, publication_year ) VALUES (?,?,?,?)";
-                            // SQLの作成(準備)
-                            preparedStatement = connection.prepareStatement(sql);
-                            // SQLバインド変数への値設定
-                            preparedStatement.setInt(1, masterId);
-                            preparedStatement.setString(2, title);
-                            preparedStatement.setString(3, author);
-                            preparedStatement.setInt(4, publication_year);
-                            break;
-                        case 3:
-                            sql = "UPDATE book_master SET title = ?, author = ?, publication_year =? WHERE id = ?";
-                            // SQLの作成(準備)
-                            preparedStatement = connection.prepareStatement(sql);
-                            // SQLバインド変数への値設定
-                            preparedStatement.setString(1, title);
-                            preparedStatement.setString(2, author);
-                            preparedStatement.setInt(3, publication_year);
-                            preparedStatement.setInt(4, masterId);
-                            break;
-                        default:
-                            System.out.println("モード選択ができていませんでした");
-                    }
-                    int result = preparedStatement.executeUpdate();
-                    System.out.println("登録結果:" + result);
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException("EMPLOYEEテーブルのINSERTに失敗しました", e);
-            } finally {
-                try {
-                    if (preparedStatement != null) {
-                        preparedStatement.close();
-                        System.out.println("ステートメントの解放に成功しました");
-                    }
-                } catch (SQLException e) {
-                    throw new RuntimeException("ステートメントの解放に失敗しました", e);
-                }
-            }
-        } finally {
-            connectionManager.closeConnection();
-        }
-    }
 
     @Override
     public void insert(BookMaster entity) throws SQLException {
@@ -191,15 +104,44 @@ public class BookMasterDAO implements DAO<BookMaster> {
     }
 
     @Override
-    public List<BookMaster> select(BookMaster bookCondition) throws SQLException {
+    public List<BookMaster> select(BookMaster searchCondition) throws SQLException {
         ConnectionManager connectionManager = new ConnectionManager();
         try {
             Connection connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = null;
             try {
-                String sql = "SELECT * FROM book_master ORDER BY id WHERE 1 = 1 AND";
+                String sql = "SELECT * FROM book_master WHERE 1 = 1";
+                if (searchCondition.getId() != null) {
+                    sql += " AND id = " + searchCondition.getId();
+                }
+                if (searchCondition.getTitle() != null) {
+                    sql += " AND title = '" + searchCondition.getTitle() + "'";
+                }
+                if (searchCondition.getAuthor() != null) {
+                    sql += " AND author = '" + searchCondition.getAuthor() + "'";
+                }
+                if (searchCondition.getCurrentStock() != null) {
+                    sql += " AND current_stock = " + searchCondition.getCurrentStock();
+                }
+                if (searchCondition.getTotalStock() != null) {
+                    sql += " AND total_stock = " + searchCondition.getTotalStock();
+                }
+                if (searchCondition.getPublicationYear() != null) {
+                    sql += " AND publication_year = " + searchCondition.getPublicationYear();
+                }
+                if (searchCondition.getDescription() != null) {
+                    sql += " AND description = '" + searchCondition.getDescription() + "'";
+                }
+                if (searchCondition.getCategory() != null) {
+                    sql += " AND category = '" + searchCondition.getCategory() + "'";
+                }
+                if (searchCondition.getImage() != null) {
+                    sql += " AND image = '" + searchCondition.getImage() + "'";
+                }
 
-                // BookMaster bookCondition = entity;
+                sql += " ORDER BY id";
+                System.out.println(sql);
+
                 // SQLの作成(準備)
                 preparedStatement = connection.prepareStatement(sql);
                 // preparedStatement.setInt(1, masterId);
@@ -217,8 +159,8 @@ public class BookMasterDAO implements DAO<BookMaster> {
                     String image = resultSet.getString("image");
 
                     // Create a new BookMaster object using the retrieved data
-                    BookMaster book = new BookMaster(id, title, author, currentStock, totalStock, publicationYear,
-                            category, description, image);
+                    BookMaster book = new BookMaster(id, title, author, currentStock, totalStock,
+                            publicationYear, category, description, image);
 
                     // Add the BookMaster object to the result list
                     result.add(book);
@@ -226,7 +168,6 @@ public class BookMasterDAO implements DAO<BookMaster> {
 
                 for (int i = 0; i < result.size(); i++) {
                     BookMaster book = result.get(i);
-
                     // Access the properties of the BookMaster object
                     int id = book.getId();
                     String title = book.getTitle();
@@ -252,7 +193,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
                     System.out.println("------------------------");
                 }
             } catch (SQLException e) {
-                throw new RuntimeException("EMPLOYEEテーブルのINSERTに失敗しました", e);
+                throw new RuntimeException("BookMasterテーブルからの情報取得に失敗しました。", e);
             } finally {
                 try {
                     if (preparedStatement != null) {
