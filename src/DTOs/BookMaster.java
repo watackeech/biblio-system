@@ -7,9 +7,10 @@ public class BookMaster {
     private int publicationYear;
     private String category;
     private String description;
+    private String image;
 
     public BookMaster(int id, String title, String author, int currentStock, int totalStock, int publicationYear,
-            String category, String description) {
+            String category, String description, String image) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -18,6 +19,7 @@ public class BookMaster {
         this.publicationYear = publicationYear;
         this.category = category;
         this.description = description;
+        this.image = image;
     }
 
     public int getId() {
@@ -82,5 +84,13 @@ public class BookMaster {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -141,18 +142,67 @@ public class BookMasterDAO implements DAO {
             Connection connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = null;
             try {
-                String sql = "SELECT id, title, author, publication_year FROM book_master";
+                String sql = "SELECT * FROM book_master ORDER BY id";
                 // SQLの作成(準備)
                 preparedStatement = connection.prepareStatement(sql);
                 // preparedStatement.setInt(1, masterId);
                 ResultSet resultSet = preparedStatement.executeQuery();
-                System.out.println(resultSet);
+                List<BookMaster> result = new ArrayList<BookMaster>();
                 while (resultSet.next()) {
-                    System.out.println("id:" + resultSet.getInt("id"));
-                    System.out.println("title:" + resultSet.getString("title"));
-                    System.out.println("author:" + resultSet.getString("author"));
-                    System.out.println("publication_year:" + resultSet.getInt("publication_year"));
+                    int id = resultSet.getInt("id");
+                    String title = resultSet.getString("title");
+                    String author = resultSet.getString("author");
+                    int currentStock = resultSet.getInt("current_stock");
+                    int totalStock = resultSet.getInt("total_stock");
+                    int publicationYear = resultSet.getInt("publication_year");
+                    String category = resultSet.getString("category");
+                    String description = resultSet.getString("description");
+                    String image = resultSet.getString("image");
+
+                    // Create a new BookMaster object using the retrieved data
+                    BookMaster book = new BookMaster(id, title, author, currentStock, totalStock, publicationYear,
+                            category, description, image);
+
+                    // Add the BookMaster object to the result list
+                    result.add(book);
                 }
+
+                for (int i = 0; i < result.size(); i++) {
+                    BookMaster book = result.get(i);
+
+                    // Access the properties of the BookMaster object
+                    int id = book.getId();
+                    String title = book.getTitle();
+                    String author = book.getAuthor();
+                    int currentStock = book.getCurrentStock();
+                    int totalStock = book.getTotalStock();
+                    int publicationYear = book.getPublicationYear();
+                    String category = book.getCategory();
+                    String description = book.getDescription();
+                    String image = book.getImage();
+
+                    // Process the retrieved data as needed
+                    System.out.println("Book details at index " + i + ":");
+                    System.out.println("ID: " + id);
+                    System.out.println("Title: " + title);
+                    System.out.println("Author: " + author);
+                    System.out.println("Current Stock: " + currentStock);
+                    System.out.println("Total Stock: " + totalStock);
+                    System.out.println("Publication Year: " + publicationYear);
+                    System.out.println("Category: " + category);
+                    System.out.println("Description: " + description);
+                    System.out.println("image: " + image);
+                    System.out.println("------------------------");
+                }
+                // System.out.println(resultSet);
+                // while (resultSet.next()) {
+                // System.out.println("id:" + resultSet.getInt("id"));
+                // System.out.println("title:" + resultSet.getString("title"));
+                // System.out.println("author:" + resultSet.getString("author"));
+                // System.out.println("publication_year:" +
+                // resultSet.getInt("publication_year"));
+                // }
+
             } catch (SQLException e) {
                 throw new RuntimeException("EMPLOYEEテーブルのINSERTに失敗しました", e);
             } finally {
