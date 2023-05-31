@@ -208,7 +208,5 @@ public class BookMasterDAO implements DAO<BookMaster> {
             connectionManager.closeConnection();
         }
         throw new UnsupportedOperationException("Unimplemented method 'getAll'");
-
     }
-
 }
