@@ -1,4 +1,4 @@
-// package DAOs;
+package DAOs;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 // import java.util.Scanner;
+
+import DTOs.BookMaster;
 
 public class BookMasterDAO implements DAO<BookMaster> {
 

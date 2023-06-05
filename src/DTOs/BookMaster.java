@@ -1,3 +1,5 @@
+package DTOs;
+
 public class BookMaster {
     private Integer id;
     private String title;
