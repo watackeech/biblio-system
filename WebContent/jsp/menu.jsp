@@ -8,8 +8,11 @@
 </head>
 <body>
 	<p>Login has successed!</p>
-	<% Integer result = (Integer)request.getAttribute("result"); %>
+	<% Integer result = (Integer)request.getAttribute("result");
+		String userName = (String) session.getAttribute("userName");
+	%>
 
 	答え = <%=result%>
+	ユーザー名： <%=userName %>
 </body>
 </html>

@@ -14,5 +14,8 @@
 			<input type="submit" value="計算">
 		</form>
 	</div>
+<%-- 	<jsp:forward page="menu.jsp">
+		<jsp:param name="param3" value="100000" />
+	</jsp:forward> --%>
 </body>
 </html>
