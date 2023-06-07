@@ -10,9 +10,11 @@
 	<p>Login has successed!</p>
 	<% Integer result = (Integer)request.getAttribute("result");
 		String userName = (String) session.getAttribute("userName");
+		String sessionID = (String) session.getId();
 	%>
 
 	答え = <%=result%>
 	ユーザー名： <%=userName %>
+	ユーザーID： <%=sessionID %>
 </body>
 </html>

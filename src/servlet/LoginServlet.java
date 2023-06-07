@@ -57,10 +57,8 @@ public class LoginServlet extends HttpServlet {
 
 		String p1 = request.getParameter("param1");
 		String p2 = request.getParameter("param2");
-		String p3 = "3";
+		String p3 = request.getParameter("param3");
 //				request.getParameter("param3");
-
-
 		//演習-6で以下を追加
 		//2.未入力(入力された値が"")の場合、/errorへリダイレクトする。
 		if("".equals(p1) || "".equals(p2) || "".equals(p3)){

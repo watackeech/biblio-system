@@ -41,15 +41,27 @@ public class ConnectionManager {
 	 */
 	private static final String PASSWORD = "41572020";
 
-	static {
-		try {
-			Class.forName(DRIVER_NAME);
-			System.out.println("ドライバーのロードに成功しました");
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("ドライバーのロードに失敗しました", e);
+	private static boolean driverRegistered = false;
+
+//	static {
+//		try {
+//		Class.forName(DRIVER_NAME);
+//	System.out.println("ドライバーのロードに成功しました");
+//		} catch (ClassNotFoundException e) {
+//			throw new RuntimeException("ドライバーのロードに失敗しました", e);
+//		}
+//	}
+
+	public ConnectionManager() {
+		if (!driverRegistered) {
+			try {
+				Class.forName(DRIVER_NAME);
+				System.out.println("ドライバーのロードに成功しました");
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException("ドライバーのロードに失敗しました", e);
+			}
 		}
 	}
-
 	/**
 	 *
 	 * [機 能] コネクション取得メソッド<br>

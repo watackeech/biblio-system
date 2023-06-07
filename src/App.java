@@ -1,5 +1,4 @@
 import DAOs.BookMasterDAO;
-import DTOs.BookMaster;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -11,10 +10,11 @@ public class App {
         // int mode = scanner.nextInt();
         BookMasterDAO bookMasterDAO = new BookMasterDAO();
         // bookMasterDAO.getAll();
-        BookMaster bookCondition = new BookMaster();
-        bookCondition.setId(3);
-        bookCondition.setAuthor("夏目漱石");
-        // bookCondition.setPublicationYear(1999);
-        bookMasterDAO.select(bookCondition);
+//        BookMaster bookCondition = new BookMaster();
+//        bookCondition.setId(3);
+//        bookCondition.setAuthor("夏目漱石");
+//        // bookCondition.setPublicationYear(1999);
+//        bookMasterDAO.select(bookCondition);
+        bookMasterDAO.getAll();
     }
 }
