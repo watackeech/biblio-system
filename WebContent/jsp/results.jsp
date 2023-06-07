@@ -16,31 +16,38 @@
 		<input type="submit" value="書籍情報取得">
 	</form>
 	<table>
-		<tr>
-			<th>Book ID</th>
-			<th>Title</th>
-			<th>Author</th>
-		</tr>
+
 		<%-- 結果のリストを取得 --%>
 		<%
 		List<BookMaster> results = (List<BookMaster>) request.getAttribute("results");
 		%>
 		<%-- 結果を表示 --%>
 		<%
-		if (results != null) {
+		if (results != null && !results.isEmpty()) {
 		%>
-			<%
-			for (BookMaster book : results) {
-			%>
-				<tr>
-					<td><%=book.getId()%></td>
-					<td><%=book.getTitle()%></td>
-					<td><%=book.getAuthor()%></td>
-				</tr>
-			<%
-			}
+		<tr>
+			<th>Book ID</th>
+			<th>Title</th>
+			<th>Author</th>
+		</tr>
+		<%
+		for (BookMaster book : results) {
+		%>
+		<tr>
+			<td><%=book.getId()%></td>
+			<td><%=book.getTitle()%></td>
+			<td><%=book.getAuthor()%></td>
+		</tr>
+		<%
 		}
 		%>
 	</table>
+	<%
+	} else {
+	%>
+	<p>Results not found</p>
+	<%
+	}
+	%>
 </body>
 </html>
