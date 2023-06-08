@@ -3,6 +3,7 @@
 
 <%@ page import="java.util.*"%>
 <%@ page import="DTOs.BookMaster"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,43 +12,32 @@
 <title>検索結果</title>
 </head>
 <body>
-	<h1>BookMaster Records</h1>
-	<form action="results" method="post">
+    <h1>BookMaster Records</h1>
+    <form action="results" method="post">
 		<input type="submit" value="書籍情報取得">
 	</form>
-	<table>
-
-		<%-- 結果のリストを取得 --%>
-		<%
-		List<BookMaster> results = (List<BookMaster>) request.getAttribute("results");
-		%>
-		<%-- 結果を表示 --%>
-		<%
-		if (results != null && !results.isEmpty()) {
-		%>
-		<tr>
-			<th>Book ID</th>
-			<th>Title</th>
-			<th>Author</th>
-		</tr>
-		<%
-		for (BookMaster book : results) {
-		%>
-		<tr>
-			<td><%=book.getId()%></td>
-			<td><%=book.getTitle()%></td>
-			<td><%=book.getAuthor()%></td>
-		</tr>
-		<%
-		}
-		%>
-	</table>
-	<%
-	} else {
-	%>
-	<p>Results not found</p>
-	<%
-	}
-	%>
+    <table>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+        <c:choose>
+            <c:when test="${empty results}">
+                <tr>
+                    <td colspan="3">No records found.</td>
+                </tr>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${results}" var="book">
+                    <tr>
+                        <td>${book.id}</td>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                    </tr>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+    </table>
 </body>
 </html>

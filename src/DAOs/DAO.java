@@ -6,6 +6,7 @@ import java.util.List;
 public interface DAO<T> {
     // Generic type (Type Parameter)
     // 型変数・仮型パラメータとも呼ばれる
+
     List<T> getAll() throws SQLException;
 
     List<T> select(T entity) throws SQLException;
