@@ -13,6 +13,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/common.css">
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/page/account.css">
 
 <!-- Favicons -->
 <link href="${pageContext.request.contextPath}/assets/img/favicon.png"
@@ -58,9 +60,50 @@
 		<jsp:param name="loginUser" value="${loginUser}" />
 	</jsp:include>
 
+	<section id="account" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+		<c:choose>
+			<c:when test="${loggedIn}">
+				<a href="logout" class="nav-link">ログアウト</a>
+
+					<div class="row gy-4 mt-5 justify-content-center"
+						data-aos="zoom-in" data-aos-delay="250">
+						<div class="col-xl-2 col-md-4">
+							<a href="logout" class="box-link">
+								<div class="icon-box">
+									<i class="ri-expand-left-line"></i>
+									<h3>ログアウト</h3>
+								</div>
+							</a>
+						</div>
+						<div class="col-xl-2 col-md-4">
+							<a href="logout" class="box-link">
+								<div class="icon-box">
+									<i class="ri-expand-left-line"></i>
+									<h3>ログアウト</h3>
+								</div>
+							</a>
+						</div>
+						<div class="col-xl-2 col-md-4">
+							<a href="logout" class="box-link">
+								<div class="icon-box">
+									<i class="ri-logout-circle-line"></i>
+									<h3>ログアウト</h3>
+								</div>
+							</a>
+						</div>
+					</div>
+			</c:when>
+			<c:otherwise>
+				<a href="login-register" class="nav-link">ログイン／登録</a>
+			</c:otherwise>
+		</c:choose>
+	</div>
+  </section>
+
 	<div id="preloader"></div>
 
-		<script
+	<script
 		src="${pageContext.request.contextPath}assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/vendor/aos/aos.js"></script>

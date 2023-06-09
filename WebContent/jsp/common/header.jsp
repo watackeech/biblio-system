@@ -54,7 +54,7 @@
 			class="container d-flex align-items-center justify-content-lg-between">
 
 			<h1 class="logo me-auto me-lg-0">
-				<a href="top">NB<span>.</span></a>
+				<a href="top">Kellogg's<span>.</span></a>
 			</h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -82,7 +82,7 @@
 
 
 						<div class="icon-box">
-							<a href="login-register" class="account-link">
+							<a href="account" class="account-link">
 							<span>こんにちは ${loginUser.name}さん！&nbsp;</span>
 								<i class="ri-account-circle-fill"></i>
 							</a>

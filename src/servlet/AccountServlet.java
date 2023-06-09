@@ -28,7 +28,7 @@ public class AccountServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/top.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/account.jsp");
 		dispatcher.forward(request, response);
 	}
 

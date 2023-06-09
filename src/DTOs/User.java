@@ -1,27 +1,25 @@
 package DTOs;
 
 public class User {
-    private Integer id;
+	private Integer studentId;
     private String name;
-    private String studentId;
     private String password;
 
     public User() {
     }
 
-    public User(Integer id, String name, String studentId, String password) {
-        this.id = id;
-        this.name = name;
+    public User(Integer studentId, String name, String password) {
         this.studentId = studentId;
+        this.name = name;
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -32,14 +30,6 @@ public class User {
         this.name = name;
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -47,4 +37,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

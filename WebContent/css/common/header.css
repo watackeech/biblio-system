@@ -48,6 +48,7 @@ span {
 	font-size: 14px;
 	display: inline-block;
 	border: 2px solid #ffc451;
+	text-decoration: none;
 }
 
 .get-started-btn:hover {
@@ -86,6 +87,7 @@ span {
 	display: flex;
 	align-items: center;
 }
+
 
 /**
 * Desktop Navigation

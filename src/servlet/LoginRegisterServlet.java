@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,7 +59,7 @@ public class LoginRegisterServlet extends HttpServlet {
 			UsersDAO dao = new UsersDAO(con);
 			if (action != null && action.equals("register")) {
 				String username = request.getParameter("regUsername");
-				String studentId = request.getParameter("regStudentId");
+				Integer studentId = Integer.parseInt(request.getParameter("regStudentId"));
 				String password = request.getParameter("regPassword");
 
 				User newUser = new User();
@@ -92,9 +91,6 @@ public class LoginRegisterServlet extends HttpServlet {
 				System.out.println("ログイン/登録の失敗...");
 			}
 
-			List<User> results = dao.getAll();
-			System.out.println(results);
-			request.setAttribute("results", results);
 			if (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) {
 				//				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/top.jsp");
 				System.out.println("top.jsへフォワード");

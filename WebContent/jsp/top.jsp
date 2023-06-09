@@ -10,11 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/page/top.css">
+
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/common.css">
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/page/top.css">
 
 <%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/header.css"> --%>
@@ -55,7 +56,7 @@
 	rel="stylesheet">
 </head>
 <body>
-<div class="background-container"></div>
+	<div class="background-container"></div>
 	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
 	<c:set var="loginUser" value="${sessionScope.loginUser}" />
 	<jsp:include page="common/header.jsp">
@@ -86,45 +87,59 @@
 		</c:choose>
 	</div> --%>
 
-<section id="hero" class="d-flex align-items-center justify-content-center">
-    <div class="container" data-aos="fade-up">
+	<section id="hero"
+		class="d-flex align-items-center justify-content-center">
+		<div class="container" data-aos="fade-up">
 
-      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-        <div class="col-xl-6 col-lg-8">
-          <h1>Powerful Digital Solutions With Gp<span>.</span></h1>
-          <h2>We are team of talented digital marketers</h2>
-        </div>
-      </div>
+			<div class="row justify-content-center" data-aos="fade-up"
+				data-aos-delay="150">
+				<div class="col-xl-6 col-lg-8">
+					<h1>
+						素材まるごとグラノラ<span>.</span>
+					</h1>
+					<h2>朝摘みいちご いちごの量 No.1</h2>
+				</div>
+			</div>
 
-      <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-search-2-line"></i>
-            <h3><a href="">探す</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-expand-left-line"></i>
-            <h3><a href="">借りる</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-contract-right-line"></i>
-            <h3><a href="">返す</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-book-3-fill"></i>
-            <h3><a href="">蔵書管理</a></h3>
-          </div>
-        </div>
-      </div>
+			<div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in"
+				data-aos-delay="250">
+				<div class="col-xl-2 col-md-4">
+					<a href="logout" class="box-link">
+						<div class="icon-box">
+							<i class="ri-search-2-line"></i>
+							<h3>探す</h3>
+						</div>
+					</a>
+				</div>
+				<div class="col-xl-2 col-md-4">
+					<a href="logout" class="box-link">
+						<div class="icon-box">
+							<i class="ri-logout-box-line"></i>
+							<h3>借りる</h3>
+						</div>
+					</a>
+				</div>
+				<div class="col-xl-2 col-md-4">
+					<a href="logout" class="box-link">
+						<div class="icon-box">
+							<i class="ri-login-box-line"></i>
+							<h3>返す</h3>
+						</div>
+					</a>
+				</div>
+				<div class="col-xl-2 col-md-4">
+					<a href="logout" class="box-link">
+						<div class="icon-box">
+							<i class="ri-book-3-fill"></i>
+							<h3>蔵書管理</h3>
+						</div>
+					</a>
+				</div>
+			</div>
 
-    </div>
-  </section><!-- End Hero -->
+		</div>
+	</section>
+	<!-- End Hero -->
 
 
 

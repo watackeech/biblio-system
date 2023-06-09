@@ -22,7 +22,7 @@ public class UsersDAO implements DAO<User> {
 	        String sql = "INSERT INTO users (name, student_id, password) VALUES (?, ?, ?)";
 	        preparedStatement = con.prepareStatement(sql);
 	        preparedStatement.setString(1, entity.getName());
-	        preparedStatement.setInt(2, Integer.parseInt(entity.getStudentId()));
+	        preparedStatement.setInt(2, entity.getStudentId());
 	        preparedStatement.setString(3, entity.getPassword());
 	        preparedStatement.executeUpdate();
 	    } catch (SQLException e) {
@@ -38,12 +38,11 @@ public class UsersDAO implements DAO<User> {
 	public void update(User entity) throws SQLException {
 		PreparedStatement preparedStatement = null;
 	    try {
-	        String sql = "UPDATE users SET name = ?, student_id = ?, password = ? WHERE id = ?";
+	        String sql = "UPDATE users SET name = ?, password = ? WHERE studentId = ?";
 	        preparedStatement = con.prepareStatement(sql);
 	        preparedStatement.setString(1, entity.getName());
-	        preparedStatement.setString(2, entity.getStudentId());
-	        preparedStatement.setString(3, entity.getPassword());
-	        preparedStatement.setInt(4, entity.getId());
+	        preparedStatement.setString(2, entity.getPassword());
+	        preparedStatement.setInt(3, entity.getStudentId());
 	        preparedStatement.executeUpdate();
 	    } catch (SQLException e) {
 	        throw new RuntimeException("データベースエラー", e);
@@ -58,9 +57,9 @@ public class UsersDAO implements DAO<User> {
 	public void delete(User condition) throws SQLException {
 		PreparedStatement preparedStatement = null;
 	    try {
-	        String sql = "DELETE FROM users WHERE id = ?";
+	        String sql = "DELETE FROM users WHERE student_id = ?";
 	        preparedStatement = con.prepareStatement(sql);
-	        preparedStatement.setInt(1, condition.getId());
+	        preparedStatement.setInt(1, condition.getStudentId());
 	        preparedStatement.executeUpdate();
 	    } catch (SQLException e) {
 	        throw new RuntimeException("データベースエラー", e);
@@ -75,7 +74,7 @@ public class UsersDAO implements DAO<User> {
 	public List<User> getAll() throws SQLException {
 		PreparedStatement preparedStatement = null;
 		try {
-			String sql = "SELECT * FROM users ORDER BY id";
+			String sql = "SELECT * FROM users";
 			preparedStatement = con.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			List<User> result = new ArrayList<>();
@@ -83,24 +82,22 @@ public class UsersDAO implements DAO<User> {
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
-				String studentId = resultSet.getString("student_id");
+				int studentId = Integer.parseInt(resultSet.getString("student_id"));
 				String password = resultSet.getString("password");
 
-				User user = new User(id, name, studentId, password);
+				User user = new User(studentId, name, password);
 				result.add(user);
 			}
 
 			for (int i = 0; i < result.size(); i++) {
 				User user = result.get(i);
-				int id = user.getId();
 				String name = user.getName();
-				String studentId = user.getStudentId();
+				Integer studentId = user.getStudentId();
 				String password = user.getPassword();
 
 				System.out.println("User details at index " + i + ":");
-				System.out.println("ID: " + id);
-				System.out.println("Name: " + name);
 				System.out.println("Student ID: " + studentId);
+				System.out.println("Name: " + name);
 				System.out.println("Password: " + password);
 				System.out.println("------------------------");
 			}
@@ -129,11 +126,9 @@ public class UsersDAO implements DAO<User> {
 			preparedStatement = con.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				int serialId = resultSet.getInt("id");
 				String name = resultSet.getString("name");
-				String studentId = resultSet.getString("student_id");
+				int studentId = Integer.parseInt(resultSet.getString("student_id"));
 				String password = resultSet.getString("password");
-				user.setId(serialId);
 				user.setName(name);
 				user.setStudentId(studentId);
 				user.setPassword(password);
@@ -164,9 +159,7 @@ public class UsersDAO implements DAO<User> {
 			try {
 				StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE 1 = 1");
 
-				if (searchCondition.getId() != null) {
-					sql.append(" AND id = ").append(searchCondition.getId());
-				}
+
 				if (searchCondition.getName() != null) {
 					sql.append(" AND name = '").append(searchCondition.getName()).append("'");
 				}
@@ -185,24 +178,21 @@ public class UsersDAO implements DAO<User> {
 				List<User> result = new ArrayList<>();
 
 				while (resultSet.next()) {
-					int id = resultSet.getInt("id");
 					String name = resultSet.getString("name");
-					String studentId = resultSet.getString("student_id");
+					int studentId = Integer.parseInt(resultSet.getString("student_id"));
 					String password = resultSet.getString("password");
 
-					User user = new User(id, name, studentId, password);
+					User user = new User(studentId, name, password);
 					result.add(user);
 				}
 
 				for (int i = 0; i < result.size(); i++) {
 					User user = result.get(i);
-					int id = user.getId();
 					String name = user.getName();
-					String studentId = user.getStudentId();
+					int studentId = user.getStudentId();
 					String password = user.getPassword();
 
 					System.out.println("User details at index " + i + ":");
-					System.out.println("ID: " + id);
 					System.out.println("Name: " + name);
 					System.out.println("Student ID: " + studentId);
 					System.out.println("Password: " + password);
