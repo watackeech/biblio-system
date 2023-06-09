@@ -10,10 +10,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/page/top.css"> --%>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/common/header.css">
+	href="${pageContext.request.contextPath}/css/page/top.css">
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/common/common.css">
+
+<%-- <link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/common/header.css"> --%>
 
 <!-- Favicons -->
 <link href="${pageContext.request.contextPath}/assets/img/favicon.png"
@@ -51,11 +55,11 @@
 	rel="stylesheet">
 </head>
 <body>
-<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
- 	<jsp:include page="common/header.jsp">
+	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
+	<jsp:include page="common/header.jsp">
 		<jsp:param name="loggedIn" value="${loggedIn}" />
 	</jsp:include>
-<%--
+	<%--
 	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
 	<c:choose>
 		<c:when test="${not empty loggedIn}">
@@ -79,72 +83,57 @@
 		</c:choose>
 	</div> --%>
 
-<section id="hero"
-		class="d-flex align-items-center justify-content-center">
-		<div class="container" data-aos="fade-up">
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
 
-			<div class="row justify-content-center" data-aos="fade-up"
-				data-aos-delay="150">
-				<div class="col-xl-6 col-lg-8">
-					<h1>
-						Powerful Digital Solutions With Gp<span>.</span>
-					</h1>
-					<h2>We are team of talented digital marketers</h2>
-				</div>
-			</div>
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>Powerful Digital Solutions With Gp<span>.</span></h1>
+          <h2>We are team of talented digital marketers</h2>
+        </div>
+      </div>
 
-			<div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in"
-				data-aos-delay="250">
-				<div class="col-xl-2 col-md-4">
-					<div class="icon-box">
-						<i class="ri-store-line"></i>
-						<h3>
-							<a href="">Lorem Ipsum</a>
-						</h3>
-					</div>
-				</div>
-				<div class="col-xl-2 col-md-4">
-					<div class="icon-box">
-						<i class="ri-bar-chart-box-line"></i>
-						<h3>
-							<a href="">Dolor Sitema</a>
-						</h3>
-					</div>
-				</div>
-				<div class="col-xl-2 col-md-4">
-					<div class="icon-box">
-						<i class="ri-calendar-todo-line"></i>
-						<h3>
-							<a href="">Sedare Perspiciatis</a>
-						</h3>
-					</div>
-				</div>
-				<div class="col-xl-2 col-md-4">
-					<div class="icon-box">
-						<i class="ri-paint-brush-line"></i>
-						<h3>
-							<a href="">Magni Dolores</a>
-						</h3>
-					</div>
-				</div>
-				<div class="col-xl-2 col-md-4">
-					<div class="icon-box">
-						<i class="ri-database-2-line"></i>
-						<h3>
-							<a href="">Nemos Enimade</a>
-						</h3>
-					</div>
-				</div>
-			</div>
+      <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <i class="ri-store-line"></i>
+            <h3><a href="">Lorem Ipsum</a></h3>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <i class="ri-bar-chart-box-line"></i>
+            <h3><a href="">Dolor Sitema</a></h3>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <i class="ri-calendar-todo-line"></i>
+            <h3><a href="">Sedare Perspiciatis</a></h3>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <i class="ri-paint-brush-line"></i>
+            <h3><a href="">Magni Dolores</a></h3>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box">
+            <i class="ri-database-2-line"></i>
+            <h3><a href="">Nemos Enimade</a></h3>
+          </div>
+        </div>
+      </div>
 
-		</div>
-	</section>
+    </div>
+  </section><!-- End Hero -->
 
 
 
 
 	<div id="preloader"></div>
-<!-- 	<a href="#"
+	<!-- 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a> -->
 
@@ -165,7 +154,7 @@
 		src="${pageContext.request.contextPath}/assets/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
-<script src="${pageContext.request.contextPath}/js/common/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/common/header.js"></script>
 </body>
 
 </html>
