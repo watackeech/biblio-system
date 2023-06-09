@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="DTOs.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -7,9 +9,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Beautiful Header</title>
+<title>Insert title here</title>
+
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/common/header.css">
+	href="${pageContext.request.contextPath}/css/common/common.css">
+
 <!-- Favicons -->
 <link href="${pageContext.request.contextPath}/assets/img/favicon.png"
 	rel="icon">
@@ -44,61 +48,19 @@
 <link
 	href="${pageContext.request.contextPath}/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
-
 </head>
-
 <body>
+	<div class="background-container"></div>
+	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
+	<c:set var="loginUser" value="${sessionScope.loginUser}" />
+	<jsp:include page="common/header.jsp">
+		<jsp:param name="loggedIn" value="${loggedIn}" />
+		<jsp:param name="loginUser" value="${loginUser}" />
+	</jsp:include>
 
-	<header id="header" class="fixed-top ">
-		<div
-			class="container d-flex align-items-center justify-content-lg-between">
+	<div id="preloader"></div>
 
-			<h1 class="logo me-auto me-lg-0">
-				<a href="top">NB<span>.</span></a>
-			</h1>
-			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-			<nav id="navbar" class="navbar order-last order-lg-0">
-				<ul>
-					<li><a class="nav-link scrollto" href="#hero">Home</a></li>
-					<li><a class="nav-link scrollto" href="#about">About</a></li>
-
-					<li><c:choose>
-							<c:when test="${loggedIn}">
-								<a href="logout" class="nav-link">ログアウト</a>
-							</c:when>
-							<c:otherwise>
-								<a href="login-register" class="nav-link">ログイン／登録</a>
-							</c:otherwise>
-						</c:choose></li>
-				</ul>
-				<i class="bi bi-list mobile-nav-toggle"></i>
-			</nav>
-			<!-- .navbar -->
-			<div class="account-box ml-auto">
-			<c:choose>
-				<c:when test="${loggedIn && not empty loginUser}">
-
-
-						<div class="icon-box">
-							<a href="login-register" class="account-link">
-							<span>こんにちは ${loginUser.name}さん！&nbsp;</span>
-								<i class="ri-account-circle-fill"></i>
-							</a>
-						</div>
-
-				</c:when>
-				<c:otherwise>
-					<a href="login-register" class="get-started-btn scrollto">ログイン/登録</a>
-				</c:otherwise>
-			</c:choose>
-				</div>
-		</div>
-	</header>
-
-	<!-- Vendor JS Files -->
-	<script
+		<script
 		src="${pageContext.request.contextPath}assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/vendor/aos/aos.js"></script>

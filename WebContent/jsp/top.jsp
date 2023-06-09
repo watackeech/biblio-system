@@ -55,9 +55,12 @@
 	rel="stylesheet">
 </head>
 <body>
+<div class="background-container"></div>
 	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
+	<c:set var="loginUser" value="${sessionScope.loginUser}" />
 	<jsp:include page="common/header.jsp">
 		<jsp:param name="loggedIn" value="${loggedIn}" />
+		<jsp:param name="loginUser" value="${loginUser}" />
 	</jsp:include>
 	<%--
 	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
@@ -96,39 +99,32 @@
       <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
-            <i class="ri-store-line"></i>
-            <h3><a href="">Lorem Ipsum</a></h3>
+            <i class="ri-search-2-line"></i>
+            <h3><a href="">探す</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
-            <i class="ri-bar-chart-box-line"></i>
-            <h3><a href="">Dolor Sitema</a></h3>
+            <i class="ri-expand-left-line"></i>
+            <h3><a href="">借りる</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
-            <i class="ri-calendar-todo-line"></i>
-            <h3><a href="">Sedare Perspiciatis</a></h3>
+            <i class="ri-contract-right-line"></i>
+            <h3><a href="">返す</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
           <div class="icon-box">
-            <i class="ri-paint-brush-line"></i>
-            <h3><a href="">Magni Dolores</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-database-2-line"></i>
-            <h3><a href="">Nemos Enimade</a></h3>
+            <i class="ri-book-3-fill"></i>
+            <h3><a href="">蔵書管理</a></h3>
           </div>
         </div>
       </div>
 
     </div>
   </section><!-- End Hero -->
-
 
 
 
