@@ -17,9 +17,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/page/top.css">
 
-<%-- <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/common/header.css"> --%>
-
 <!-- Favicons -->
 <link href="${pageContext.request.contextPath}/assets/img/favicon.png"
 	rel="icon">
@@ -57,10 +54,8 @@
 </head>
 <body>
 	<div class="background-container"></div>
-<%-- 	<c:set var="loggedIn" value="${sessionScope.loggedIn}" /> --%>
+	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
 	<c:set var="loginUser" value="${sessionScope.loginUser}" />
-	<c:set var="loggedIn" value="${sessionScope.loggedIn}" scope="request" />
-
 	<jsp:include page="common/header.jsp">
 		<jsp:param name="loggedIn" value="${loggedIn}" />
 		<jsp:param name="loginUser" value="${loginUser}" />
@@ -70,61 +65,39 @@
 		class="d-flex align-items-center justify-content-center">
 		<div class="container" data-aos="fade-up">
 
-			<div class="row justify-content-center" data-aos="fade-up"
-				data-aos-delay="150">
-				<div class="col-xl-6 col-lg-8">
-					<h1>
-						素材まるごとグラノラ<span>.</span>
-					</h1>
-					<h2>朝摘みいちご いちごの量 No.1</h2>
-				</div>
-			</div>
-
 			<div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in"
 				data-aos-delay="250">
 				<div class="col-xl-2 col-md-4">
-					<a href="explore" class="box-link">
+					<a href="register-book" class="box-link">
 						<div class="icon-box">
-							<i class="ri-search-2-line"></i>
-							<h3>探す</h3>
+							<i class="ri-add-circle-line"></i>
+							<h3>新規追加</h3>
 						</div>
 					</a>
 				</div>
-				<c:if test="${loggedIn}">
-					<div class="col-xl-2 col-md-4">
-						<a href="borrow" class="box-link">
-							<div class="icon-box">
-								<i class="ri-logout-box-line"></i>
-								<h3>借りる</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-md-4">
-						<a href="return" class="box-link">
-							<div class="icon-box">
-								<i class="ri-login-box-line"></i>
-								<h3>返す</h3>
-							</div>
-						</a>
-					</div>
-					<c:if test="${loginUser.status =='super'}">
-						<div class="col-xl-2 col-md-4">
-							<a href="manage-books" class="box-link">
-								<div class="icon-box">
-									<i class="ri-book-3-fill"></i>
-									<h3>蔵書管理</h3>
-								</div>
-							</a>
+				<div class="col-xl-2 col-md-4">
+					<a href="update-book" class="box-link">
+						<div class="icon-box">
+							<i class="ri-loop-left-fill"></i>
+							<h3>情報修正</h3>
 						</div>
-					</c:if>
-				</c:if>
+					</a>
+				</div>
+				<div class="col-xl-2 col-md-4">
+					<a href="dispose-book" class="box-link">
+						<div class="icon-box">
+							<i class="ri-delete-bin-6-line"></i>
+							<h3>蔵書処分</h3>
+						</div>
+					</a>
+				</div>
 			</div>
 
 		</div>
 	</section>
 
 
-
+	
 	<div id="preloader"></div>
 	<!-- Vendor JS Files -->
 	<script

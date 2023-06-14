@@ -84,8 +84,9 @@ public class UsersDAO implements DAO<User> {
 				String name = resultSet.getString("name");
 				int studentId = Integer.parseInt(resultSet.getString("student_id"));
 				String password = resultSet.getString("password");
+				String status = resultSet.getString("status");
 
-				User user = new User(studentId, name, password);
+				User user = new User(studentId, name, password, status);
 				result.add(user);
 			}
 
@@ -129,9 +130,11 @@ public class UsersDAO implements DAO<User> {
 				String name = resultSet.getString("name");
 				int studentId = Integer.parseInt(resultSet.getString("student_id"));
 				String password = resultSet.getString("password");
+				String status = resultSet.getString("status");
 				user.setName(name);
 				user.setStudentId(studentId);
 				user.setPassword(password);
+				user.setStatus(status);
 			};
 
 			return user;
@@ -181,8 +184,9 @@ public class UsersDAO implements DAO<User> {
 					String name = resultSet.getString("name");
 					int studentId = Integer.parseInt(resultSet.getString("student_id"));
 					String password = resultSet.getString("password");
+					String status = resultSet.getString("status");
 
-					User user = new User(studentId, name, password);
+					User user = new User(studentId, name, password, status);
 					result.add(user);
 				}
 

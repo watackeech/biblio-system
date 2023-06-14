@@ -76,6 +76,7 @@ public class LoginRegisterServlet extends HttpServlet {
 				String password = request.getParameter("password");
 				User loginUser = dao.checkById(Integer.parseInt(studentId));
 				System.out.println(loginUser.getPassword());
+				System.out.println(loginUser.getStatus());
 				System.out.println(password);
 				if (password.equals(loginUser.getPassword())) {
 					System.out.println("ログイン成功！");
@@ -84,7 +85,6 @@ public class LoginRegisterServlet extends HttpServlet {
 				} else {
 					System.out.println("ログイン失敗...");
 				}
-
 			} else {
 				// 不正なリクエストまたは未指定の処理
 				// エラーハンドリングなどを行う

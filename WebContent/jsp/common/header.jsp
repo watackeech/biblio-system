@@ -79,8 +79,6 @@
 			<div class="account-box ml-auto">
 			<c:choose>
 				<c:when test="${loggedIn && not empty loginUser}">
-
-
 						<div class="icon-box">
 							<a href="account" class="account-link">
 							<span>こんにちは ${loginUser.name}さん！&nbsp;</span>

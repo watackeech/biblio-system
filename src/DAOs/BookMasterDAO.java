@@ -20,17 +20,109 @@ public class BookMasterDAO implements DAO<BookMaster> {
 
 	@Override
 	public void insert(BookMaster entity) throws SQLException {
-		throw new UnsupportedOperationException("Unimplemented method 'insert'");
+		PreparedStatement preparedStatement = null;
+
+	    try {
+	    	con.setAutoCommit(false);
+	        String sql = "INSERT INTO book_master (id, title, author, publication_year, description, image, current_stock, total_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        preparedStatement = con.prepareStatement(sql);
+	        preparedStatement.setString(1, entity.getId());
+	        preparedStatement.setString(2, entity.getTitle());
+	        preparedStatement.setString(3, entity.getAuthor());
+	        preparedStatement.setInt(4, entity.getPublicationYear());
+	        preparedStatement.setString(5, entity.getDescription());
+	        preparedStatement.setString(6, entity.getImage());
+	        preparedStatement.setInt(7, 1); // 新規追加された本は、stockが1つ
+	        preparedStatement.setInt(8, 1);
+	        preparedStatement.executeUpdate();
+	        con.commit();
+	    } catch (SQLException e) {
+	    	con.rollback();
+	        throw new RuntimeException("データベースエラー", e);
+	    } finally {
+	    	if (preparedStatement != null) {
+	            preparedStatement.close();
+	        }
+	    }
+	}
+
+	public void addAnotherBook(BookMaster entity) throws SQLException {
+	    PreparedStatement preparedStatement = null;
+	    String sql = "UPDATE book_master SET total_stock = total_stock + 1, current_stock = current_stock + 1 WHERE id = ?";
+
+	    try {
+	        System.out.println("try add another book");
+	        con.setAutoCommit(false); // トランザクションの開始
+
+	        preparedStatement = con.prepareStatement(sql);
+	        preparedStatement.setString(1, entity.getId());
+	        preparedStatement.executeUpdate();
+
+	        con.commit(); // トランザクションのコミット
+	        System.out.println("added another book!");
+	    } catch (SQLException e) {
+	        con.rollback(); // トランザクションのロールバック（エラー発生時の処理）
+	        throw e;
+	    } finally {
+	        if (preparedStatement != null) {
+	            preparedStatement.close();
+	        }
+//	        con.setAutoCommit(true); // トランザクションモードをデフォルトに戻す
+	    }
 	}
 
 	@Override
 	public void update(BookMaster entity) throws SQLException {
-		throw new UnsupportedOperationException("Unimplemented method 'update'");
+
 	}
 
 	@Override
 	public void delete(BookMaster bookCondition) throws SQLException {
 		throw new UnsupportedOperationException("Unimplemented method 'delete'");
+	}
+
+	/**
+	 * @param ISBN
+	 * @return
+	 * @throws SQLException
+	 */
+	public BookMaster checkByISBN(String ISBN) throws SQLException {
+		PreparedStatement preparedStatement = null;
+		try {
+			BookMaster bookMaster = null; //合致するものがなかった場合、nullを返したい
+			String sql = "SELECT * FROM book_master WHERE id= '" + ISBN + "'";
+			preparedStatement = con.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				bookMaster = new BookMaster(); //一行取得できた場合のみnullでなくなる
+				String id =  resultSet.getString("id");
+				String title = resultSet.getString("title");
+				String author = resultSet.getString("author");
+				Integer publicationYear = Integer.parseInt(resultSet.getString("publication_year"));
+				String description = resultSet.getString("description");
+				String image = resultSet.getString("image");
+				bookMaster.setId(id);
+				bookMaster.setTitle(title);
+				bookMaster.setAuthor(author);
+				bookMaster.setPublicationYear(publicationYear);
+				bookMaster.setDescription(description);
+				bookMaster.setImage(image);
+			};
+
+			return bookMaster;
+
+		} catch (SQLException e) {
+			throw new RuntimeException("データベースエラー", e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+					System.out.println("ステートメントの解放に成功しました");
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException("ステートメントの解放に失敗しました", e);
+			}
+		}
 	}
 
 	@Override
@@ -44,7 +136,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			List<BookMaster> result = new ArrayList<BookMaster>();
 			while (resultSet.next()) {
-				int id = resultSet.getInt("id");
+				String id = resultSet.getString("id");
 				String title = resultSet.getString("title");
 				String author = resultSet.getString("author");
 				int currentStock = resultSet.getInt("current_stock");
@@ -66,7 +158,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				BookMaster book = result.get(i);
 
 				// Access the properties of the BookMaster object
-				int id = book.getId();
+				String id = book.getId();
 				String title = book.getTitle();
 				String author = book.getAuthor();
 				int currentStock = book.getCurrentStock();
@@ -149,7 +241,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				ResultSet resultSet = preparedStatement.executeQuery();
 				List<BookMaster> result = new ArrayList<BookMaster>();
 				while (resultSet.next()) {
-					int id = resultSet.getInt("id");
+					String id = resultSet.getString("id");
 					String title = resultSet.getString("title");
 					String author = resultSet.getString("author");
 					int currentStock = resultSet.getInt("current_stock");
@@ -170,7 +262,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				for (int i = 0; i < result.size(); i++) {
 					BookMaster book = result.get(i);
 					// Access the properties of the BookMaster object
-					int id = book.getId();
+					String id = book.getId();
 					String title = book.getTitle();
 					String author = book.getAuthor();
 					int currentStock = book.getCurrentStock();

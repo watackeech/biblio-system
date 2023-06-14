@@ -1,7 +1,7 @@
 package DTOs;
 
 public class BookMaster {
-    private Integer id;
+    private String id;
     private String title;
     private String author;
     private Integer totalStock;
@@ -14,7 +14,7 @@ public class BookMaster {
     public BookMaster() {
     }
 
-    public BookMaster(Integer id, String title, String author, Integer currentStock, Integer totalStock,
+    public BookMaster(String id, String title, String author, Integer currentStock, Integer totalStock,
             Integer publicationYear,
             String category, String description, String image) {
         this.id = id;
@@ -28,11 +28,11 @@ public class BookMaster {
         this.image = image;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
