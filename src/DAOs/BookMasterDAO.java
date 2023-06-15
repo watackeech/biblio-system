@@ -73,7 +73,36 @@ public class BookMasterDAO implements DAO<BookMaster> {
 
 	@Override
 	public void update(BookMaster entity) throws SQLException {
+		PreparedStatement preparedStatement = null;
+	    String sql = "UPDATE book_master SET title = ?, author = ?, publication_year = ?, descrioption = ?, image = ?, total_stock = ?, current_stock = ?, WHERE id = ?";
 
+	    try {
+	        System.out.println("try update");
+	        con.setAutoCommit(false); // トランザクションの開始
+
+	        preparedStatement = con.prepareStatement(sql);
+	        preparedStatement.setString(1, entity.getTitle());
+	        preparedStatement.setString(2, entity.getAuthor());
+	        preparedStatement.setInt(3, entity.getPublicationYear());
+	        preparedStatement.setString(4, entity.getDescription());
+	        preparedStatement.setString(5, entity.getImage());
+	        preparedStatement.setInt(6, entity.getTotalStock()); // 新規追加された本は、stockが1つ
+	        preparedStatement.setInt(7, entity.getCurrentStock());
+	        preparedStatement.setString(8, entity.getId());
+
+	        preparedStatement.executeUpdate();
+
+	        con.commit(); // トランザクションのコミット
+	        System.out.println("added another book!");
+	    } catch (SQLException e) {
+	        con.rollback(); // トランザクションのロールバック（エラー発生時の処理）
+	        throw e;
+	    } finally {
+	        if (preparedStatement != null) {
+	            preparedStatement.close();
+	        }
+//	        con.setAutoCommit(true); // トランザクションモードをデフォルトに戻す
+	    }
 	}
 
 	@Override
@@ -101,12 +130,16 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				Integer publicationYear = Integer.parseInt(resultSet.getString("publication_year"));
 				String description = resultSet.getString("description");
 				String image = resultSet.getString("image");
+				Integer currentStock = Integer.parseInt(resultSet.getString("current_stock"));
+				Integer totalStock = Integer.parseInt(resultSet.getString("total_stock"));
 				bookMaster.setId(id);
 				bookMaster.setTitle(title);
 				bookMaster.setAuthor(author);
 				bookMaster.setPublicationYear(publicationYear);
 				bookMaster.setDescription(description);
 				bookMaster.setImage(image);
+				bookMaster.setCurrentStock(currentStock);
+				bookMaster.setTotalStock(totalStock);
 			};
 
 			return bookMaster;

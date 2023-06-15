@@ -42,7 +42,10 @@ public class UpdateBookServlet extends HttpServlet {
 			Connection con = connectionManager.getConnection();
 			BookMasterDAO dao = new BookMasterDAO(con);
 			BookMaster book = new BookMaster();
+			System.out.println(bookId);
 			book = dao.selectByISBN(bookId);
+			System.out.println(book.getAuthor());
+			System.out.println(book.getTotalStock());
 			request.setAttribute("book", book);
 		} catch (Exception e) {
 			e.printStackTrace();

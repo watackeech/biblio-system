@@ -45,6 +45,7 @@
 										<div class="col-lg-6">
 											<h5 class="mt-0 font-weight-bold mb-2">${book.title}</h5>
 											<p class="font-italic text-muted mb-0 small">${book.publicationYear}</p>
+											<p class="font-italic text-muted mb-0 small">${book.currentStock}</p>
 										</div>
 										<div
 											class="col-lg-6 d-flex align-items-center justify-content-end">

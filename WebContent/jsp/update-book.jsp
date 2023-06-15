@@ -50,6 +50,21 @@
 					<input type="text" class="form-control" name="image" id="image"
 						value="${book.image}"><label for="image">画像リンク</label>
 				</div>
+				<div class="form-floating mb-3 mt-3">
+					<select class="form-select" name="currentStock" id="currentStock" >
+						<c:forEach var="i" begin="0" end="20">
+							<option value="${i}" ${book.currentStock == i ? 'selected' : ''}>${i}</option>
+						</c:forEach>
+					</select> <label for="currentStock">在庫数</label>
+				</div>
+
+				<div class="form-floating mb-3 mt-3">
+					<select class="form-select" name="totalStock" id="totalStock">
+						<c:forEach var="i" begin="0" end="20">
+							<option value="${i}" ${book.totalStock == i ? 'selected' : ''}>${i}</option>
+						</c:forEach>
+					</select> <label for="totalStock">総在庫数</label>
+				</div>
 				<button type="submit" formaction="update-book" formmethod="post"
 					id="login-button" class="btn btn-primary btn-block">書籍情報を更新！</button>
 			</form>
