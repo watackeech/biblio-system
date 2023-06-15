@@ -49,14 +49,46 @@ public class SearchBooksServlet extends HttpServlet {
             e.printStackTrace();
             // エラーハンドリング
         }
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		ConnectionManager connectionManager = new ConnectionManager();
+
+	    try {
+	        Connection con = connectionManager.getConnection();
+	        BookMasterDAO bookMasterDAO = new BookMasterDAO(con);
+	        // 検索条件をリクエストパラメータから取得
+	        String title = request.getParameter("title"); //requestはサーブレットで完結させるべき
+	        String author = request.getParameter("author");
+	        System.out.println("タイトル：" + title);
+	        System.out.println("著者" + author);
+
+	        // 検索条件を設定したBookMasterオブジェクトを作成
+	        BookMaster searchCondition = new BookMaster();
+	        if(!title.equals("")) {
+	        	searchCondition.setTitle(title);
+	        }
+	        if(!author.equals("")) {
+	        	searchCondition.setAuthor(author);
+	        }
+
+
+	        // 検索を実行
+	        List<BookMaster> books = bookMasterDAO.select(searchCondition);
+
+	        request.setAttribute("books", books);
+	        request.getRequestDispatcher("/jsp/search-books.jsp").forward(request, response);
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        // エラーハンドリング
+	    } finally {
+	        connectionManager.closeConnection();
+	    }
 	}
 
 }

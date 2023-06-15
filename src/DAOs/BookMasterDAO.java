@@ -86,7 +86,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 	 * @return
 	 * @throws SQLException
 	 */
-	public BookMaster checkByISBN(String ISBN) throws SQLException {
+	public BookMaster selectByISBN(String ISBN) throws SQLException {
 		PreparedStatement preparedStatement = null;
 		try {
 			BookMaster bookMaster = null; //合致するものがなかった場合、nullを返したい
@@ -196,22 +196,31 @@ public class BookMasterDAO implements DAO<BookMaster> {
 		}
 	}
 
+
+
 	@Override
 	public List<BookMaster> select(BookMaster searchCondition) throws SQLException {
-		ConnectionManager connectionManager = new ConnectionManager();
-		try {
-			Connection connection = connectionManager.getConnection();
+//		ConnectionManager connectionManager = new ConnectionManager();
+//		try {
+//			Connection connection = connectionManager.getConnection();
 			PreparedStatement preparedStatement = null;
 			try {
-				String sql = "SELECT * FROM book_master WHERE 1 = 1"; // StringJoinerクラスを使ってみる
+				String sql = "SELECT * FROM book_master WHERE 1 = 1";
+				// StringJoinerクラスを使ってみる
+				//if (whereConditionList.size() > 0) {
+				//	  query += " WHERE " + String.join(" AND ", whereConditionList);
+				//}
+
+
+
 				if (searchCondition.getId() != null) {
-					sql += " AND id = " + searchCondition.getId();
+					sql += " AND id LIKE " + searchCondition.getId();
 				}
 				if (searchCondition.getTitle() != null) {
-					sql += " AND title = '" + searchCondition.getTitle() + "'";
+					sql += " AND title LIKE '%" + searchCondition.getTitle() + "%'";
 				}
 				if (searchCondition.getAuthor() != null) {
-					sql += " AND author = '" + searchCondition.getAuthor() + "'";
+					sql += " AND author LIKE '%" + searchCondition.getAuthor() + "%'";
 				}
 				if (searchCondition.getCurrentStock() != null) {
 					sql += " AND current_stock = " + searchCondition.getCurrentStock();
@@ -233,10 +242,10 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				}
 
 				sql += " ORDER BY id";
-				System.out.println(sql);
+				System.out.println("SQL文は" + sql);
 
 				// SQLの作成(準備)
-				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement = con.prepareStatement(sql);
 				// preparedStatement.setInt(1, masterId);
 				ResultSet resultSet = preparedStatement.executeQuery();
 				List<BookMaster> result = new ArrayList<BookMaster>();
@@ -259,32 +268,34 @@ public class BookMasterDAO implements DAO<BookMaster> {
 					result.add(book);
 				}
 
-				for (int i = 0; i < result.size(); i++) {
-					BookMaster book = result.get(i);
-					// Access the properties of the BookMaster object
-					String id = book.getId();
-					String title = book.getTitle();
-					String author = book.getAuthor();
-					int currentStock = book.getCurrentStock();
-					int totalStock = book.getTotalStock();
-					int publicationYear = book.getPublicationYear();
-					String category = book.getCategory();
-					String description = book.getDescription();
-					String image = book.getImage();
+//				for (int i = 0; i < result.size(); i++) {
+//					BookMaster book = result.get(i);
+//					// Access the properties of the BookMaster object
+//					String id = book.getId();
+//					String title = book.getTitle();
+//					String author = book.getAuthor();
+//					int currentStock = book.getCurrentStock();
+//					int totalStock = book.getTotalStock();
+//					int publicationYear = book.getPublicationYear();
+//					String category = book.getCategory();
+//					String description = book.getDescription();
+//					String image = book.getImage();
+//
+//					// Process the retrieved data as needed
+//					System.out.println("Book details at index " + i + ":");
+//					System.out.println("ID: " + id);
+//					System.out.println("Title: " + title);
+//					System.out.println("Author: " + author);
+//					System.out.println("Current Stock: " + currentStock);
+//					System.out.println("Total Stock: " + totalStock);
+//					System.out.println("Publication Year: " + publicationYear);
+//					System.out.println("Category: " + category);
+//					System.out.println("Description: " + description);
+//					System.out.println("image: " + image);
+//					System.out.println("------------------------");
+//				}
 
-					// Process the retrieved data as needed
-					System.out.println("Book details at index " + i + ":");
-					System.out.println("ID: " + id);
-					System.out.println("Title: " + title);
-					System.out.println("Author: " + author);
-					System.out.println("Current Stock: " + currentStock);
-					System.out.println("Total Stock: " + totalStock);
-					System.out.println("Publication Year: " + publicationYear);
-					System.out.println("Category: " + category);
-					System.out.println("Description: " + description);
-					System.out.println("image: " + image);
-					System.out.println("------------------------");
-				}
+				return result;
 			} catch (SQLException e) {
 				throw new RuntimeException("BookMasterテーブルからの情報取得に失敗しました。", e);
 			} finally {
@@ -297,14 +308,14 @@ public class BookMasterDAO implements DAO<BookMaster> {
 					throw new RuntimeException("ステートメントの解放に失敗しました", e);
 				}
 			}
-		} finally {
-			try {
-				connectionManager.closeConnection();
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
+//		} finally {
+//			try {
+//				connectionManager.closeConnection();
+//			} catch (Exception e) {
+//				throw new RuntimeException(e);
+//			}
+//
+//		}
 
-		}
-		throw new UnsupportedOperationException("Unimplemented method 'getAll'");
 	}
 }

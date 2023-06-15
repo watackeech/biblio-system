@@ -70,7 +70,7 @@ public class RegisterBookServlet extends HttpServlet {
 			BookMasterDAO dao = new BookMasterDAO(con);
 			String id = request.getParameter("id");
 			System.out.println(id);
-			BookMaster result = dao.checkByISBN(id);
+			BookMaster result = dao.selectByISBN(id);
 			if (result == null) {
 				String title = request.getParameter("title");
 				String author = request.getParameter("author");
