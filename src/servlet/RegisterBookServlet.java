@@ -119,7 +119,7 @@ public class RegisterBookServlet extends HttpServlet {
 			//				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/login-register.jsp");
 			//				dispatcher.forward(request, response);
 			//			}
-
+			request.getRequestDispatcher("/jsp/search-books.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

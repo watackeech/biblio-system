@@ -29,17 +29,17 @@ public class ConnectionManager {
 	/**
 	 * 接続
 	 */
-	private static final String URL = "jdbc:postgresql://localhost:5432/library";
+	private static final String URL = "jdbc:postgresql://localhost:5432/valuebiblio";
 
 	/**
 	 * 接続ユーザ
 	 */
-	private static final String USER = "postgres";
+	private static final String USER = "kiichi";
 
 	/**
 	 * 接続パスワード
 	 */
-	private static final String PASSWORD = "41572020";
+	private static final String PASSWORD = "kiichi";
 
 	private static boolean driverRegistered = false;
 

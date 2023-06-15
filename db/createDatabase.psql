@@ -1,2 +1,2 @@
 --create initial database
-CREATE DATABASE library;
+CREATE DATABASE valuebiblio;

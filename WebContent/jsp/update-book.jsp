@@ -25,10 +25,7 @@
 		<div class="form-container" id="loginFormContainer">
 			<h2 class="text-center mb-4">書籍情報の更新！</h2>
 			<form id="loginForm">
-				<div class="form-floating mb-3 mt-3">
-					<input type="text" class="form-control" name="id" id="id"
-						value="${book.id}"> <label for="id">ISBNコード</label>
-				</div>
+				<input type="hidden" name="bookId" value="${book.id }">
 				<div class="form-floating mb-3 mt-3">
 					<input type="text" class="form-control" name="title" id="title"
 						value="${book.title}"> <label for="title">タイトル</label>
@@ -51,7 +48,7 @@
 						value="${book.image}"><label for="image">画像リンク</label>
 				</div>
 				<div class="form-floating mb-3 mt-3">
-					<select class="form-select" name="currentStock" id="currentStock" >
+					<select class="form-select" name="currentStock" id="currentStock">
 						<c:forEach var="i" begin="0" end="20">
 							<option value="${i}" ${book.currentStock == i ? 'selected' : ''}>${i}</option>
 						</c:forEach>

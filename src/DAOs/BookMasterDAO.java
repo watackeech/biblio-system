@@ -74,7 +74,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 	@Override
 	public void update(BookMaster entity) throws SQLException {
 		PreparedStatement preparedStatement = null;
-	    String sql = "UPDATE book_master SET title = ?, author = ?, publication_year = ?, descrioption = ?, image = ?, total_stock = ?, current_stock = ?, WHERE id = ?";
+	    String sql = "UPDATE book_master SET title = ?, author = ?, publication_year = ?, description = ?, image = ?, total_stock = ?, current_stock = ? WHERE id = ?";
 
 	    try {
 	        System.out.println("try update");
