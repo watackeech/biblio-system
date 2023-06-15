@@ -54,12 +54,12 @@ public class UsersDAO implements DAO<User> {
 	}
 
 	@Override
-	public void delete(User condition) throws SQLException {
+	public void deleteById(Integer i) throws SQLException {
 		PreparedStatement preparedStatement = null;
 	    try {
 	        String sql = "DELETE FROM users WHERE student_id = ?";
 	        preparedStatement = con.prepareStatement(sql);
-	        preparedStatement.setInt(1, condition.getStudentId());
+	        preparedStatement.setInt(1, i);
 	        preparedStatement.executeUpdate();
 	    } catch (SQLException e) {
 	        throw new RuntimeException("データベースエラー", e);

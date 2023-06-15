@@ -97,7 +97,7 @@
 	</section>
 
 
-	
+
 	<div id="preloader"></div>
 	<!-- Vendor JS Files -->
 	<script
@@ -117,6 +117,7 @@
 
 	<!-- Template Main JS File -->
 	<script src="${pageContext.request.contextPath}/js/common/header.js"></script>
+	<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,33 +64,53 @@ public class UpdateBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String bookId = request.getParameter("bookId");
+		String action = request.getParameter("action");
 		ConnectionManager connectionManager = new ConnectionManager();
+		Connection con = null;
 
 		try {
-			Connection con = connectionManager.getConnection();
+			con = connectionManager.getConnection();
+			con.setAutoCommit(false);
 			BookMasterDAO dao = new BookMasterDAO(con);
-			String title = request.getParameter("title");
-			String author = request.getParameter("author");
-			Integer publicationYear = Integer.parseInt(request.getParameter("publicationYear"));
-			String description = request.getParameter("description");
-			String image = request.getParameter("image");
-			Integer currentStock = Integer.parseInt(request.getParameter("currentStock"));
-			Integer totalStock = Integer.parseInt(request.getParameter("totalStock"));
 
-				BookMaster newBookMaster = new BookMaster();
-				newBookMaster.setId(bookId);
-				newBookMaster.setTitle(title);
-				newBookMaster.setAuthor(author);
-				newBookMaster.setPublicationYear(publicationYear);
-				newBookMaster.setDescription(description);
-				newBookMaster.setImage(image);
-				newBookMaster.setCurrentStock(currentStock);
-				newBookMaster.setTotalStock(totalStock);
-				dao.update(newBookMaster);
-				response.sendRedirect("search-books");
+
+			if(action.equals("update")) {
+				String title = request.getParameter("title");
+				String author = request.getParameter("author");
+				Integer publicationYear = Integer.parseInt(request.getParameter("publicationYear"));
+				String description = request.getParameter("description");
+				String image = request.getParameter("image");
+				Integer currentStock = Integer.parseInt(request.getParameter("currentStock"));
+				Integer totalStock = Integer.parseInt(request.getParameter("totalStock"));
+
+					BookMaster newBookMaster = new BookMaster();
+					newBookMaster.setId(bookId);
+					newBookMaster.setTitle(title);
+					newBookMaster.setAuthor(author);
+					newBookMaster.setPublicationYear(publicationYear);
+					newBookMaster.setDescription(description);
+					newBookMaster.setImage(image);
+					newBookMaster.setCurrentStock(currentStock);
+					newBookMaster.setTotalStock(totalStock);
+					dao.update(newBookMaster);
+					con.commit();
+			}else if(action.equals("delete")) {
+				System.out.println("削除します！！");
+				dao.deleteByISBN(bookId);
+				con.commit();
+			}
+			response.sendRedirect("search-books");
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			if (con != null) {
+	            try {
+	                con.rollback(); // ロールバック
+	                System.out.println("トランザクションをロールバックしました");
+	            } catch (SQLException ex) {
+	                ex.printStackTrace();
+	            }
+	        }
 		} finally {
 			connectionManager.closeConnection();
 		}

@@ -106,8 +106,49 @@ public class BookMasterDAO implements DAO<BookMaster> {
 	}
 
 	@Override
-	public void delete(BookMaster bookCondition) throws SQLException {
-		throw new UnsupportedOperationException("Unimplemented method 'delete'");
+	public void deleteById(Integer i) throws SQLException {
+		PreparedStatement preparedStatement = null;
+		try {
+			BookMaster bookMaster = null; //合致するものがなかった場合、nullを返したい
+			String sql = "DELETE FROM book_master WHERE id= '" + i + "'";
+			preparedStatement = con.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+		} catch (SQLException e) {
+			throw new RuntimeException("データベースエラー", e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+					System.out.println("ステートメントの解放に成功しました");
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException("ステートメントの解放に失敗しました", e);
+			}
+		}
+	}
+	public void deleteByISBN(String id) throws SQLException {
+	    PreparedStatement preparedStatement = null;
+	    try {
+	        BookMaster bookMaster = null; //合致するものがなかった場合、nullを返したい
+	        String sql = "DELETE FROM book_master WHERE id= ?";
+	        preparedStatement = con.prepareStatement(sql);
+	        preparedStatement.setString(1, id);
+	        int rowsDeleted = preparedStatement.executeUpdate();
+	        System.out.println("削除された行数: " + rowsDeleted);
+
+	    } catch (SQLException e) {
+	        throw new RuntimeException("データベースエラー", e);
+	    } finally {
+	        try {
+	            if (preparedStatement != null) {
+	                preparedStatement.close();
+	                System.out.println("ステートメントの解放に成功しました");
+	            }
+	        } catch (SQLException e) {
+	            throw new RuntimeException("ステートメントの解放に失敗しました", e);
+	        }
+	    }
 	}
 
 	/**

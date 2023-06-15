@@ -16,6 +16,7 @@
 	href="${pageContext.request.contextPath}/css/common/common.css">
 </head>
 <body>
+
 	<div class="background-container"></div>
 	<form>
 		<input type="text" name="title" placeholder="書籍名を入力してください"> <input

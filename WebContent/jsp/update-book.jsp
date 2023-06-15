@@ -20,6 +20,10 @@
 	href="${pageContext.request.contextPath}/css/common/common.css">
 </head>
 <body>
+<%-- 	<jsp:include page="common/header.jsp">
+		<jsp:param name="loggedIn" value="${loggedIn}" />
+		<jsp:param name="loginUser" value="${loginUser}" />
+	</jsp:include> --%>
 	<div class="background-container"></div>
 	<div class="container">
 		<div class="form-container" id="loginFormContainer">
@@ -62,15 +66,18 @@
 						</c:forEach>
 					</select> <label for="totalStock">総在庫数</label>
 				</div>
-				<button type="submit" formaction="update-book" formmethod="post"
+				<button type="submit" formaction="update-book" formmethod="post" name="action" value="update"
 					id="login-button" class="btn btn-primary btn-block">書籍情報を更新！</button>
+					<button type="submit" formaction="update-book" formmethod="post" name="action" value="delete" class="btn btn-danger btn-block">書籍を削除する</button>
 			</form>
 		</div>
 	</div>
+<!-- 	<div id="preloader"></div> -->
 	<div id="errorMessageContainer"></div>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
 	<script
 		src="${pageContext.request.contextPath}/js/page/login-register.js"></script>
+		<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 </body>
 </html>
