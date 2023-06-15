@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,49 +11,50 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/page/login-register.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/common.css">
 </head>
 <body>
-<!-- 	<div class="background-container"></div>
-		<div class="container">
-	<div class="form-container" id="loginFormContainer">
-		<h2 class="text-center mb-4">書籍の更新！</h2>
-		<form id="loginForm">
-			<div class="form-group">
-				<input type="text" class="form-control" name="id" id="id"
-					placeholder="ISBNコード">
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" name="title" id="title"
-					placeholder="本のタイトル">
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" name="author" id="author"
-					placeholder="著者">
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" name="publicationYear"
-					id="publicationYear" placeholder="出版年">
-			</div>
-			<div class="form-group">
-				<textarea class="form-control" name="description" id="description"
-					placeholder="概要"></textarea>
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" name="image" id="image"
-					placeholder="画像リンク">
-			</div>
-			<input type="hidden" name="action" value="login">
-			<button type="submit" formaction="register-book" formmethod="post"
-				id="login-button" class="btn btn-primary btn-block">書籍を登録！</button>
-		</form>
-	</div> -->
-
-	${book.title}
-	${book.author}
+	<div class="background-container"></div>
+	<div class="container">
+		<div class="form-container" id="loginFormContainer">
+			<h2 class="text-center mb-4">書籍情報の更新！</h2>
+			<form id="loginForm">
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control" name="id" id="id"
+						value="${book.id}"> <label for="id">ISBNコード</label>
+				</div>
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control" name="title" id="title"
+						value="${book.title}"> <label for="title">タイトル</label>
+				</div>
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control" name="author" id="author"
+						value="${book.author}"><label for="id">著者</label>
+				</div>
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control" name="publicationYear"
+						id="publicationYear" value="${book.publicationYear}"><label
+						for="publicationYear">出版年</label>
+				</div>
+				<div class="form-floating mb-3 mt-3">
+					<textarea class="form-control" name="description" id="description">${book.description}</textarea>
+					<label for="descrioption">概要</label>
+				</div>
+				<div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control" name="image" id="image"
+						value="${book.image}"><label for="image">画像リンク</label>
+				</div>
+				<button type="submit" formaction="update-book" formmethod="post"
+					id="login-button" class="btn btn-primary btn-block">書籍情報を更新！</button>
+			</form>
+		</div>
+	</div>
 	<div id="errorMessageContainer"></div>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
