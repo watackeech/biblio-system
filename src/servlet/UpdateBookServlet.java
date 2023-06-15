@@ -63,7 +63,6 @@ public class UpdateBookServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String bookId = request.getParameter("bookId");
-		response.setContentType("text/html;charset=UTF-8");
 		ConnectionManager connectionManager = new ConnectionManager();
 
 		try {
@@ -87,11 +86,6 @@ public class UpdateBookServlet extends HttpServlet {
 				newBookMaster.setCurrentStock(currentStock);
 				newBookMaster.setTotalStock(totalStock);
 				dao.update(newBookMaster);
-//				dao.insert(newBookMaster);
-//			} else {
-//				System.out.println("dao.addAnotherBook起動");
-//				dao.addAnotherBook(result); //既存の本だった場合、一冊追加する
-//			}
 				response.sendRedirect("search-books");
 
 		} catch (Exception e) {
