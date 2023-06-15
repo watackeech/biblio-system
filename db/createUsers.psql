@@ -3,25 +3,39 @@
 BEGIN TRANSACTION;
 
     CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
+    student_id INTEGER PRIMARY KEY,
     password VARCHAR(31),
     name VARCHAR(63),
-    grade INTEGER
+    status VARCHAR(63)
+    -- grade INTEGER
     );
 
-    INSERT INTO users (password, name, grade)
+    INSERT INTO users (student_id, password, name, status)
     VALUES
-    ('lion123', 'サトウ', 4),
-    ('tiger456', 'タナカ', 2),
-    ('elephant789', 'イシカワ', 6),
-    ('giraffe012', 'ヤマモト', 1),
-    ('zebra345', 'スズキ', 3),
-    ('monkey678', 'ワタナベ', 5),
-    ('panda901', 'クマモト', 2),
-    ('koala234', 'キムラ', 4),
-    ('hippo567', 'ナカジマ', 3),
-    ('rhino890', 'カワムラ', 6);
+    (1234, 'lion1234', 'サトウ', 'normal'),
+    (7438, 'tiger456', 'タナカ', 'super'),
+    (4309, 'elephant789', 'イシカワ', 'normal'),
+    (4129, 'giraffe012', 'ヤマモト', 'removed'),
+    (4319, 'zebra345', 'スズキ', 'normal'),
+    (4044, 'monkey678', 'ワタナベ', 'normal'),
+    (4303, 'panda901', 'クマモト', 'normal'),
+    (1135, 'koala234', 'キムラ', 'normal'),
+    (6522, 'hippo567', 'ナカジマ', 'normal'),
+    (6432, 'rhino890', 'カワムラ', 'red');
+
+    -- INSERT INTO users (password, name, student_number, grade)
+    -- VALUES
+    -- ('lion123', 'サトウ', 9283, 4),
+    -- ('tiger456', 'タナカ', 7438, 2),
+    -- ('elephant789', 'イシカワ', 4309, 6),
+    -- ('giraffe012', 'ヤマモト', 4129, 1),
+    -- ('zebra345', 'スズキ', 4309, 3),
+    -- ('monkey678', 'ワタナベ', 4044, 5),
+    -- ('panda901', 'クマモト', 4303, 2),
+    -- ('koala234', 'キムラ', 1135, 4),
+    -- ('hippo567', 'ナカジマ', 6522, 3),
+    -- ('rhino890', 'カワムラ', 6432, 6);
 
     -- 正しく挿入できているかを確認
-    select * from users;
+    select * from users where student_id=9283;
 COMMIT;

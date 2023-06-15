@@ -1,0 +1,3 @@
+--create initial database
+CREATE USER kiichi with password 'kiichi';
+CREATE DATABASE valuebiblio;

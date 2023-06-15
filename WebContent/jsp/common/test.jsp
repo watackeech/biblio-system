@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<title>Beautiful Header</title>
+	<style>
+	/* CSS styles */
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.header {
+		background-color: #333;
+		color: #fff;
+		padding: 20px;
+		text-align: center;
+	}
+
+	.header a {
+		color: #fff;
+		text-decoration: none;
+		margin: 0 10px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.header a::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		background-color: #fff;
+		visibility: hidden;
+		transform: scaleX(0);
+		transition: all 0.3s ease-in-out;
+	}
+
+	.header a:hover::before {
+		visibility: visible;
+		transform: scaleX(1);
+	}
+	</style>
+</head>
+
+<body>
+	<div class="header">
+		<a href="login-register.html">ログイン／登録</a>
+	</div>
+
+	<!-- JavaScript code (optional) -->
+	<script>
+		// You can add JavaScript functionality here
+	</script>
+</body>
+</html>

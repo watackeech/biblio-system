@@ -1,3 +1,4 @@
+package DAOs;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
  * [備 考] なし<br>
  * [環 境] OpenJDK 11 <br>
  * Copyright(c) 2019 Fullness, Inc. All Rights Reserved
- * 
+ *
  * @author [作 成] 2017/03/05 fullness(fullness)
  *         [修 正] 2019/10/30 fullness(fullness)
  */
@@ -28,34 +29,46 @@ public class ConnectionManager {
 	/**
 	 * 接続
 	 */
-	private static final String URL = "jdbc:postgresql://localhost:5432/library";
+	private static final String URL = "jdbc:postgresql://localhost:5432/valuebiblio";
 
 	/**
 	 * 接続ユーザ
 	 */
-	private static final String USER = "postgres";
+	private static final String USER = "kiichi";
 
 	/**
 	 * 接続パスワード
 	 */
-	private static final String PASSWORD = "41572020";
+	private static final String PASSWORD = "kiichi";
 
-	static {
-		try {
-			Class.forName(DRIVER_NAME);
-			System.out.println("ドライバーのロードに成功しました");
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("ドライバーのロードに失敗しました", e);
+	private static boolean driverRegistered = false;
+
+//	static {
+//		try {
+//		Class.forName(DRIVER_NAME);
+//	System.out.println("ドライバーのロードに成功しました");
+//		} catch (ClassNotFoundException e) {
+//			throw new RuntimeException("ドライバーのロードに失敗しました", e);
+//		}
+//	}
+
+	public ConnectionManager() {
+		if (!driverRegistered) {
+			try {
+				Class.forName(DRIVER_NAME);
+				System.out.println("ドライバーのロードに成功しました");
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException("ドライバーのロードに失敗しました", e);
+			}
 		}
 	}
-
 	/**
 	 *
 	 * [機 能] コネクション取得メソッド<br>
 	 * [説 明] コネクションを取得し、返却する。<br>
 	 * ※例外取得時にはRuntimeExceptionにラップし上位に送出する。<br>
 	 * [備 考] なし
-	 * 
+	 *
 	 * @return コネクション
 	 */
 	public Connection getConnection() {
