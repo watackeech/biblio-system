@@ -228,33 +228,33 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				result.add(book);
 			}
 
-			for (int i = 0; i < result.size(); i++) {
-				BookMaster book = result.get(i);
-
-				// Access the properties of the BookMaster object
-				String id = book.getId();
-				String title = book.getTitle();
-				String author = book.getAuthor();
-				int currentStock = book.getCurrentStock();
-				int totalStock = book.getTotalStock();
-				int publicationYear = book.getPublicationYear();
-				String category = book.getCategory();
-				String description = book.getDescription();
-				String image = book.getImage();
-
-				// Process the retrieved data as needed
-				System.out.println("Book details at index " + i + ":");
-				System.out.println("ID: " + id);
-				System.out.println("Title: " + title);
-				System.out.println("Author: " + author);
-				System.out.println("Current Stock: " + currentStock);
-				System.out.println("Total Stock: " + totalStock);
-				System.out.println("Publication Year: " + publicationYear);
-				System.out.println("Category: " + category);
-				System.out.println("Description: " + description);
-				System.out.println("image: " + image);
-				System.out.println("------------------------");
-			}
+//			for (int i = 0; i < result.size(); i++) {
+//				BookMaster book = result.get(i);
+//
+//				// Access the properties of the BookMaster object
+//				String id = book.getId();
+//				String title = book.getTitle();
+//				String author = book.getAuthor();
+//				int currentStock = book.getCurrentStock();
+//				int totalStock = book.getTotalStock();
+//				int publicationYear = book.getPublicationYear();
+//				String category = book.getCategory();
+//				String description = book.getDescription();
+//				String image = book.getImage();
+//
+//				// Process the retrieved data as needed
+//				System.out.println("Book details at index " + i + ":");
+//				System.out.println("ID: " + id);
+//				System.out.println("Title: " + title);
+//				System.out.println("Author: " + author);
+//				System.out.println("Current Stock: " + currentStock);
+//				System.out.println("Total Stock: " + totalStock);
+//				System.out.println("Publication Year: " + publicationYear);
+//				System.out.println("Category: " + category);
+//				System.out.println("Description: " + description);
+//				System.out.println("image: " + image);
+//				System.out.println("------------------------");
+//			}
 			return result;
 		} catch (SQLException e) {
 			throw new RuntimeException("データベースエラー", e);

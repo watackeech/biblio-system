@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import DAOs.ConnectionManager;
 /**
  * Servlet implementation class ReturnBookServlet
  */
-@WebServlet("/ReturnBookServlet")
+@WebServlet("/return-book")
 public class ReturnBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,16 +33,16 @@ public class ReturnBookServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/return-book.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String bookId = request.getParameter("bookId");
-		String barcodeId = "1000";
+		String barcodeId = request.getParameter("barcodeId");
+		System.out.println(barcodeId);
 		ConnectionManager connectionManager = new ConnectionManager();
 		Connection con = null;
 

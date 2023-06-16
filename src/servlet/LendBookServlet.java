@@ -43,10 +43,8 @@ public class LendBookServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//		String bookId = request.getParameter("bookId");
-		//		String action = request.getParameter("action");
-		String barcodeId = "1000";
-		//		String action = "lend";
+		String barcodeId = request.getParameter("barcodeId");
+		System.out.println(barcodeId);
 		ConnectionManager connectionManager = new ConnectionManager();
 		Connection con = null;
 

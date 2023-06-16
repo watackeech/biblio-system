@@ -18,7 +18,7 @@
 				id="barcode-id"><label
 				for="publicationYear">バーコード番号</label>
 		</div>
-		<button type="submit" formaction="lend-book" formmethod="post" class="btn btn-danger btn-block">借りる！</button>
+		<button type="submit" formaction="return-book" formmethod="post" class="btn btn-danger btn-block">返却！</button>
 	</form>
 </body>
 </html>
