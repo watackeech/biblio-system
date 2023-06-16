@@ -63,7 +63,23 @@
 				<ul>
 					<li><a class="nav-link scrollto" href="#hero">Home</a></li>
 					<li><a class="nav-link scrollto" href="#about">About</a></li>
-
+					<li class="dropdown"><a href="#"><span>Drop Down</span> <i
+							class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="#">Drop Down 1</a></li>
+							<li class="dropdown"><a href="#"><span>Deep Drop
+										Down</span> <i class="bi bi-chevron-right"></i></a>
+								<ul>
+									<li><a href="#">Deep Drop Down 1</a></li>
+									<li><a href="#">Deep Drop Down 2</a></li>
+									<li><a href="#">Deep Drop Down 3</a></li>
+									<li><a href="#">Deep Drop Down 4</a></li>
+									<li><a href="#">Deep Drop Down 5</a></li>
+								</ul></li>
+							<li><a href="#">Drop Down 2</a></li>
+							<li><a href="#">Drop Down 3</a></li>
+							<li><a href="#">Drop Down 4</a></li>
+						</ul></li>
 					<li><c:choose>
 							<c:when test="${loggedIn}">
 								<a href="logout" class="nav-link">ログアウト</a>
@@ -77,21 +93,20 @@
 			</nav>
 			<!-- .navbar -->
 			<div class="account-box ml-auto">
-			<c:choose>
-				<c:when test="${loggedIn && not empty loginUser}">
+				<c:choose>
+					<c:when test="${loggedIn && not empty loginUser}">
 						<div class="icon-box">
-							<a href="account" class="account-link">
-							<span>こんにちは ${loginUser.name}さん！&nbsp;</span>
-								<i class="ri-account-circle-fill"></i>
+							<a href="account" class="account-link"> <span>こんにちは
+									${loginUser.name}さん！&nbsp;</span> <i class="ri-account-circle-fill"></i>
 							</a>
 						</div>
 
-				</c:when>
-				<c:otherwise>
-					<a href="login-register" class="get-started-btn scrollto">ログイン/登録</a>
-				</c:otherwise>
-			</c:choose>
-				</div>
+					</c:when>
+					<c:otherwise>
+						<a href="login-register" class="get-started-btn scrollto">ログイン/登録</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 	</header>
 

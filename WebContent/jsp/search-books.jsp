@@ -14,6 +14,29 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/common.css">
+
+<!-- Vendor CSS Files -->
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/aos/aos.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/boxicons/css/boxicons.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/remixicon/remixicon.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/swiper/swiper-bundle.min.css"
+	rel="stylesheet">
 </head>
 <body>
 
@@ -26,70 +49,92 @@
 		<jsp:param name="loginUser" value="${loginUser}" />
 	</jsp:include>
 
-<section>
-	<div class="container py-5">
-		<div class="row">
-			<div class="col-lg-6 mx-auto">
-				<form>
-					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="title" name="title" placeholder="書籍名を入力してください">
-						<label for="title">書籍名</label>
-					</div>
-					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="author" name="author" placeholder="著者名を入力してください">
-						<label for="author">著者名</label>
-					</div>
-					<button type="submit" id="register-button" class="btn btn-primary" formaction="search-books" formmethod="post">検索</button>
-				</form>
+	<section>
+		<div class="container py-5">
+
+
+<div class="row">
+	<div class="col-lg-8 mx-auto search-box shadow p-4 rounded">
+		<form class="row">
+			<div class="col-md-6 mb-3">
+				<div class="form-floating">
+					<input type="text" class="form-control" id="title" name="title" placeholder="書籍名を入力してください">
+					<label for="title">書籍のタイトル</label>
+				</div>
 			</div>
-		</div>
+			<div class="col-md-6 mb-3">
+				<div class="form-floating">
+					<input type="text" class="form-control" id="author" name="author" placeholder="著者名を入力してください">
+					<label for="author">著者名</label>
+				</div>
+			</div>
+			<div class="col-md-12 d-flex justify-content-center">
+				<button type="submit" id="search-button" class="btn btn-outline-primary" formaction="search-books" formmethod="post">検索</button>
+			</div>
+		</form>
+	</div>
+</div>
 
+		<div class="mt-4"></div>
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<!-- List group-->
+					<ul class="list-group shadow">
+						<c:forEach var="book" items="${books}">
+							<li class="list-group-item">
+								<div
+									class="media align-items-center flex-column flex-lg-row p-3">
+									<img src="${book.image}" alt="Book Image" class="mr-3"
+										style="width: 100px;">
+									<div class="media-body">
+										<div class="row">
+											<div class="col-lg-6 d-flex align-items-center">
+												<h3
+													class="mt-0 font-weight-bold mb-2 text-center text-lg-left">${book.title}</h3>
+											</div>
+											<!-- 											<div
+												class="col-lg-6 d-flex align-items-center justify-content-between"> -->
+											<div class="row">
+												<div class="col">
+													<p class="font-weight-bold mb-0 detailed-info">${book.author}</p>
+												</div>
+												<div class="col">
+													<p class="font-weight-bold mb-0 detailed-info">${book.publicationYear}</p>
+												</div>
+												<div class="col">
+													<p class="font-weight-bold mb-0 detailed-info">貸出可能:
+														${book.currentStock}</p>
+												</div>
+												<div class="col">
+													<p class="font-weight-bold mb-0 detailed-info">総在庫:
+														${book.totalStock}</p>
+												</div>
+											</div>
 
-		<div class="row">
-
-
-
-			<div class="col-lg-8 mx-auto">
-				<!-- List group-->
-				<ul class="list-group shadow">
-					<c:forEach var="book" items="${books}">
-						<li class="list-group-item">
-							<div class="media align-items-center flex-column flex-lg-row p-3">
-								<img src="${book.image}" alt="Book Image" class="mr-3" style="width: 100px;">
-								<div class="media-body">
-									<div class="row">
-										<div class="col-lg-3">
-											<p class="font-weight-bold mb-1">${book.author}</p>
-											<p class="font-italic  mb-1">${book.publicationYear}</p>
-											<p class="font-italic  mb-1">貸出可能: ${book.currentStock}</p>
-											<p class="font-italic  mb-1">総在庫: ${book.totalStock}</p>
-										</div>
-										<div class="col-lg-6 d-flex align-items-center">
-											<h4 class="mt-0 font-weight-bold mb-2 text-center text-lg-left">${book.title}</h4>
-										</div>
-										<div class="col-lg-3 d-flex align-items-center justify-content-end">
-											<form>
-												<input type="hidden" name="bookId" value="${book.id}">
-												<button type="submit" class="btn btn-outline-primary btn-sm" formaction="update-book" formmethod="get">
-													<i class="ri-login-box-line"></i> 詳細
-												</button>
-											</form>
 										</div>
 									</div>
+									<form>
+										<input type="hidden" name="bookId" value="${book.id}">
+										<button type="submit" class="btn btn-outline-primary btn-sm"
+											formaction="update-book" formmethod="get">
+											<i class="ri-login-box-line"></i> 詳細
+										</button>
+									</form>
 								</div>
-							</div>
-						</li>
-					</c:forEach>
-				</ul>
+							</li>
+
+
+						</c:forEach>
+					</ul>
+				</div>
+
+
+
 			</div>
 
 
-
 		</div>
-
-
-	</div>
-</section>
+	</section>
 	<div id="preloader"></div>
 
 	<!-- https://bbbootstrap.com/snippets/product-list-65909871# -->
@@ -97,6 +142,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+	<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 </body>
 </html>
