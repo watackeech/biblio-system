@@ -30,27 +30,33 @@
 			<h2 class="text-center mb-4">書籍情報の更新！</h2>
 			<form id="loginForm">
 				<input type="hidden" name="bookId" value="${book.id }">
+
 				<div class="form-floating mb-3 mt-3">
 					<input type="text" class="form-control" name="title" id="title"
 						value="${book.title}"> <label for="title">タイトル</label>
 				</div>
+
 				<div class="form-floating mb-3 mt-3">
 					<input type="text" class="form-control" name="author" id="author"
 						value="${book.author}"><label for="id">著者</label>
 				</div>
+
 				<div class="form-floating mb-3 mt-3">
 					<input type="text" class="form-control" name="publicationYear"
 						id="publicationYear" value="${book.publicationYear}"><label
 						for="publicationYear">出版年</label>
 				</div>
+
 				<div class="form-floating mb-3 mt-3">
 					<textarea class="form-control" name="description" id="description">${book.description}</textarea>
 					<label for="descrioption">概要</label>
 				</div>
+
 				<div class="form-floating mb-3 mt-3">
 					<input type="text" class="form-control" name="image" id="image"
 						value="${book.image}"><label for="image">画像リンク</label>
 				</div>
+
 				<div class="form-floating mb-3 mt-3">
 					<select class="form-select" name="currentStock" id="currentStock">
 						<c:forEach var="i" begin="0" end="20">
@@ -66,6 +72,7 @@
 						</c:forEach>
 					</select> <label for="totalStock">総在庫数</label>
 				</div>
+
 				<button type="submit" formaction="update-book" formmethod="post" name="action" value="update"
 					id="login-button" class="btn btn-primary btn-block">書籍情報を更新！</button>
 					<button type="submit" formaction="update-book" formmethod="post" name="action" value="delete" class="btn btn-danger btn-block">書籍を削除する</button>
@@ -74,7 +81,6 @@
 	</div>
 <!-- 	<div id="preloader"></div> -->
 	<div id="errorMessageContainer"></div>
-
 
 	<script
 		src="${pageContext.request.contextPath}/js/page/login-register.js"></script>

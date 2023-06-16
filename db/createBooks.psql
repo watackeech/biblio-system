@@ -2,44 +2,130 @@
 
 CREATE TABLE books (
   id SERIAL PRIMARY KEY,
-  master_id INTEGER NOT NULL,
+  master_id VARCHAR(20) NOT NULL,
   FOREIGN KEY (master_id) references book_master(id),
   status VARCHAR(15) DEFAULT 'in_stock'
 );
 
-BEGIN TRANSACTION;
-    INSERT INTO books (master_id, status)
-    SELECT
-    -- master_id をランダム生成
-    (floor(random() * 20) + 1)::INTEGER,
-    -- status をランダム生成
-    CASE WHEN random() < 0.5 THEN 'in_stock' ELSE 'borrowed' END AS status
-    FROM generate_series(1, 100);
 
-    SELECT * FROM books;
-    SELECT master_id, COUNT(*) AS count
+INSERT INTO books (master_id, status)
+VALUES
+(1482630471090, 'borrowed'),
+(1482630471090, 'borrowed'),
+(1482630471090, 'in_stock'),
+(1482630471090, 'in_stock'),
+(1482630471091, 'borrowed'),
+(1482630471091, 'in_stock'),
+(1482630471091, 'in_stock'),
+(1482630471092, 'borrowed'),
+(1482630471092, 'in_stock'),
+(1482630471092, 'borrowed'),
+(1482630471092, 'borrowed'),
+(1482630471092, 'borrowed'),
+(1482630471092, 'borrowed'),
+(1482630471092, 'borrowed'),
+(1482630471093, 'borrowed'),
+(1482630471093, 'borrowed'),
+(1482630471093, 'borrowed'),
+(1482630471093, 'in_stock'),
+(1482630471094, 'in_stock'),
+(1482630471094, 'in_stock'),
+(1482630471094, 'borrowed'),
+(1482630471095, 'in_stock'),
+(1482630471095, 'borrowed'),
+(1482630471095, 'in_stock'),
+(1482630471095, 'in_stock'),
+(1482630471096, 'in_stock'),
+(1482630471096, 'borrowed'),
+(1482630471096, 'in_stock'),
+(1482630471096, 'borrowed'),
+(1482630471096, 'borrowed'),
+(1482630471097, 'borrowed'),
+(1482630471097, 'borrowed'),
+(1482630471097, 'in_stock'),
+(1482630471098, 'borrowed'),
+(1482630471098, 'borrowed'),
+(1482630471098, 'borrowed'),
+(1482630471099, 'borrowed'),
+(1482630471099, 'borrowed'),
+(1482630471081, 'borrowed'),
+(1482630471082, 'borrowed'),
+(1482630471082, 'borrowed'),
+(1482630471082, 'borrowed'),
+(1482630471082, 'borrowed'),
+(1482630471083, 'borrowed'),
+(1482630471083, 'in_stock'),
+(1482630471084, 'in_stock'),
+(1482630471084, 'in_stock'),
+(1482630471084, 'in_stock'),
+(1482630471085, 'in_stock'),
+(1482630471086, 'borrowed'),
+(1482630471086, 'in_stock'),
+(1482630471086, 'in_stock'),
+(1482630471087, 'borrowed'),
+(1482630471087, 'borrowed'),
+(1482630471087, 'borrowed'),
+(1482630471087, 'in_stock'),
+(1482630471088, 'borrowed'),
+(1482630471088, 'in_stock'),
+(1482630471088, 'borrowed'),
+(1482630471088, 'borrowed'),
+(1482630471073, 'in_stock'),
+(1482630471073, 'borrowed'),
+(1482630471073, 'in_stock'),
+(1482630471073, 'borrowed'),
+(1482630471089, 'in_stock'),
+(1482630471089, 'in_stock');
+
+
+-- total_stockとcurrent_stockを更新するUPDATE文
+UPDATE book_master
+SET
+  total_stock = (
+    SELECT COUNT(*)
     FROM books
-    GROUP BY master_id
-    ORDER BY master_id;
+    WHERE books.master_id = book_master.id
+  ),
+  current_stock = (
+    SELECT COUNT(*)
+    FROM books
+    WHERE books.master_id = book_master.id
+      AND books.status = 'in_stock'
+  );
 
-    SELECT b.master_id, COALESCE(c.current_count, 0), t.total_count
-    FROM (
-        SELECT master_id,
-        COUNT(*) AS current_count
-        FROM books
-        WHERE status = 'in_stock'
-        GROUP BY master_id
-    ) AS c
-    RIGHT JOIN (
-        SELECT master_id, COUNT(*) AS total_count
-        FROM books
-        GROUP BY master_id
-    ) AS t ON c.master_id = t.master_id
-    JOIN (
-        SELECT master_id, COUNT(*) AS total_count
-        FROM books
-        GROUP BY master_id
-    ) AS b ON t.master_id = b.master_id
-    ORDER BY b.master_id;
--- COMMIT;
+  select current_stock, total_stock from book_master;
 
+    -- INSERT INTO books (master_id, status)
+    -- SELECT
+    -- -- master_id をランダム生成
+    -- (floor(random() * 20) + 1)::INTEGER,
+    -- -- status をランダム生成
+    -- CASE WHEN random() < 0.5 THEN 'in_stock' ELSE 'borrowed' END AS status
+    -- FROM generate_series(1, 100);
+
+    -- SELECT * FROM books;
+    -- SELECT master_id, COUNT(*) AS count
+    -- FROM books
+    -- GROUP BY master_id
+    -- ORDER BY master_id;
+
+--     SELECT b.master_id, COALESCE(c.current_count, 0), t.total_count
+--     FROM (
+--         SELECT master_id,
+--         COUNT(*) AS current_count
+--         FROM books
+--         WHERE status = 'in_stock'
+--         GROUP BY master_id
+--     ) AS c
+--     RIGHT JOIN (
+--         SELECT master_id, COUNT(*) AS total_count
+--         FROM books
+--         GROUP BY master_id
+--     ) AS t ON c.master_id = t.master_id
+--     JOIN (
+--         SELECT master_id, COUNT(*) AS total_count
+--         FROM books
+--         GROUP BY master_id
+--     ) AS b ON t.master_id = b.master_id
+--     ORDER BY b.master_id;
+-- -- COMMIT;

@@ -52,7 +52,6 @@ public class UpdateBookServlet extends HttpServlet {
 		} finally {
 			connectionManager.closeConnection();
 		}
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/update-book.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -83,24 +82,23 @@ public class UpdateBookServlet extends HttpServlet {
 				Integer currentStock = Integer.parseInt(request.getParameter("currentStock"));
 				Integer totalStock = Integer.parseInt(request.getParameter("totalStock"));
 
-					BookMaster newBookMaster = new BookMaster();
-					newBookMaster.setId(bookId);
-					newBookMaster.setTitle(title);
-					newBookMaster.setAuthor(author);
-					newBookMaster.setPublicationYear(publicationYear);
-					newBookMaster.setDescription(description);
-					newBookMaster.setImage(image);
-					newBookMaster.setCurrentStock(currentStock);
-					newBookMaster.setTotalStock(totalStock);
-					dao.update(newBookMaster);
-					con.commit();
+				BookMaster newBookMaster = new BookMaster();
+				newBookMaster.setId(bookId);
+				newBookMaster.setTitle(title);
+				newBookMaster.setAuthor(author);
+				newBookMaster.setPublicationYear(publicationYear);
+				newBookMaster.setDescription(description);
+				newBookMaster.setImage(image);
+				newBookMaster.setCurrentStock(currentStock);
+				newBookMaster.setTotalStock(totalStock);
+				dao.update(newBookMaster);
+				con.commit();
 			}else if(action.equals("delete")) {
 				System.out.println("削除します！！");
 				dao.deleteByISBN(bookId);
 				con.commit();
 			}
 			response.sendRedirect("search-books");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (con != null) {
@@ -115,5 +113,4 @@ public class UpdateBookServlet extends HttpServlet {
 			connectionManager.closeConnection();
 		}
 	}
-
 }

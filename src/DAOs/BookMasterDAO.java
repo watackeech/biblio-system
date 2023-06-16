@@ -271,7 +271,6 @@ public class BookMasterDAO implements DAO<BookMaster> {
 	}
 
 
-
 	@Override
 	public List<BookMaster> select(BookMaster searchCondition) throws SQLException {
 //		ConnectionManager connectionManager = new ConnectionManager();
@@ -284,8 +283,6 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				//if (whereConditionList.size() > 0) {
 				//	  query += " WHERE " + String.join(" AND ", whereConditionList);
 				//}
-
-
 
 				if (searchCondition.getId() != null) {
 					sql += " AND id LIKE " + searchCondition.getId();
@@ -341,33 +338,6 @@ public class BookMasterDAO implements DAO<BookMaster> {
 					// Add the BookMaster object to the result list
 					result.add(book);
 				}
-
-//				for (int i = 0; i < result.size(); i++) {
-//					BookMaster book = result.get(i);
-//					// Access the properties of the BookMaster object
-//					String id = book.getId();
-//					String title = book.getTitle();
-//					String author = book.getAuthor();
-//					int currentStock = book.getCurrentStock();
-//					int totalStock = book.getTotalStock();
-//					int publicationYear = book.getPublicationYear();
-//					String category = book.getCategory();
-//					String description = book.getDescription();
-//					String image = book.getImage();
-//
-//					// Process the retrieved data as needed
-//					System.out.println("Book details at index " + i + ":");
-//					System.out.println("ID: " + id);
-//					System.out.println("Title: " + title);
-//					System.out.println("Author: " + author);
-//					System.out.println("Current Stock: " + currentStock);
-//					System.out.println("Total Stock: " + totalStock);
-//					System.out.println("Publication Year: " + publicationYear);
-//					System.out.println("Category: " + category);
-//					System.out.println("Description: " + description);
-//					System.out.println("image: " + image);
-//					System.out.println("------------------------");
-//				}
 
 				return result;
 			} catch (SQLException e) {
