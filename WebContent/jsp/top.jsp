@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>VB</title>
 
 
 <link rel="stylesheet" type="text/css"
@@ -74,16 +74,16 @@
 				data-aos-delay="150">
 				<div class="col-xl-6 col-lg-8">
 					<h1>
-						素材まるごとグラノラ<span>.</span>
+						Value Biblio<span>.</span>
 					</h1>
-					<h2>朝摘みいちご いちごの量 No.1</h2>
+					<h2><span class="custom-font">100</span><span>万冊</span>と<span>泊</span>まる</h2>
 				</div>
 			</div>
 
 			<div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in"
 				data-aos-delay="250">
 				<div class="col-xl-2 col-md-4">
-					<a href="explore" class="box-link">
+					<a href="search-books" class="box-link">
 						<div class="icon-box">
 							<i class="ri-search-2-line"></i>
 							<h3>探す</h3>
@@ -92,7 +92,7 @@
 				</div>
 				<c:if test="${loggedIn}">
 					<div class="col-xl-2 col-md-4">
-						<a href="borrow" class="box-link">
+						<a href="lend-book" class="box-link">
 							<div class="icon-box">
 								<i class="ri-logout-box-line"></i>
 								<h3>借りる</h3>
@@ -100,7 +100,7 @@
 						</a>
 					</div>
 					<div class="col-xl-2 col-md-4">
-						<a href="return" class="box-link">
+						<a href="return-book" class="box-link">
 							<div class="icon-box">
 								<i class="ri-login-box-line"></i>
 								<h3>返す</h3>

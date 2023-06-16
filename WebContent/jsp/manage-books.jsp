@@ -65,6 +65,15 @@
 		class="d-flex align-items-center justify-content-center">
 		<div class="container" data-aos="fade-up">
 
+			<div class="row justify-content-center" data-aos="fade-up"
+				data-aos-delay="150">
+				<div class="col-xl-6 col-lg-8">
+					<h1>
+						蔵書管理<span>.</span>
+					</h1>
+				</div>
+			</div>
+
 			<div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in"
 				data-aos-delay="250">
 				<div class="col-xl-2 col-md-4">
@@ -76,18 +85,10 @@
 					</a>
 				</div>
 				<div class="col-xl-2 col-md-4">
-					<a href="update-book" class="box-link">
+					<a href="search-books" class="box-link">
 						<div class="icon-box">
 							<i class="ri-loop-left-fill"></i>
 							<h3>情報修正</h3>
-						</div>
-					</a>
-				</div>
-				<div class="col-xl-2 col-md-4">
-					<a href="dispose-book" class="box-link">
-						<div class="icon-box">
-							<i class="ri-delete-bin-6-line"></i>
-							<h3>蔵書処分</h3>
 						</div>
 					</a>
 				</div>

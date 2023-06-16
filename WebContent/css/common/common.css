@@ -67,6 +67,14 @@ h6 {
   z-index: 9999;
   overflow: hidden;
   background: #151515;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 #preloader:before {
@@ -197,3 +205,44 @@ section {
     display: inline-block;
   }
 }
+
+
+/*--------------------------------------------------------------
+# custom-font
+--------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
+.custom-font{
+	font-family: 'Crimson Text', serif;
+}
+
+
+
+.btn-outline-primary {
+border-color: #ffd584 !important;
+color: #ffd584 !important;
+}
+
+.btn-outline-primary:hover {
+background-color: #ffd584 !important;
+border-color: #ffd584 !important;
+color: black !important;
+}
+
+.btn-outline-primary:active {
+background-color: #0056b3 !important;
+border-color: #0056b3 !important;
+color: #fff !important;
+}
+
+.btn-outline-primary:visited {
+color: #007bff !important;
+}
+
+.list-group-item{
+	background-color: rgba(92, 92, 92, 0.7) !important;
+	border: 1px solid rgba(255, 255, 255, 0.125) !important;
+	color: white !important;
+}
+
+

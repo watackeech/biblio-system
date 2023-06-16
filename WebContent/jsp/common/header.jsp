@@ -54,7 +54,7 @@
 			class="container d-flex align-items-center justify-content-lg-between">
 
 			<h1 class="logo me-auto me-lg-0">
-				<a href="top">Kellogg's<span>.</span></a>
+				<a href="top">VB<span>.</span></a>
 			</h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
 			<!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" class="img-fluid"></a>-->
