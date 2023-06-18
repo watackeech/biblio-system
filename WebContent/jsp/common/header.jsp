@@ -64,7 +64,7 @@
 					<!-- 					<li><a class="nav-link scrollto" href="#hero">Home</a></li> -->
 					<li><a class="nav-link scrollto" href="search-books">探す</a></li>
 					<c:if test="${loggedIn}">
-						<li class="dropdown"><a href="top">貸出/返却 <i
+						<li class="dropdown"><a href="book-transaction">貸出/返却 <i
 								class="bi bi-chevron-down"></i></a>
 							<ul>
 								<li><a href="lend-book">貸出</a></li>

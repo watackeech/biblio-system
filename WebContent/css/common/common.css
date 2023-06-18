@@ -83,13 +83,11 @@ h1, h2, h3, h4, h5, h6 {
 	animation: animate-preloader 1s linear infinite;
 }
 
-@
-keyframes animate-preloader { 0% {
+@keyframes animate-preloader { 0% {
 	transform: rotate(0deg);
 }
 
-100
-%
+100%
 {
 transform
 :
@@ -111,9 +109,20 @@ rotate(
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
+
+
 section {
 	padding: 60px 0;
 	overflow: hidden;
+}
+section:before {
+	content: "";
+	background: rgba(0, 0, 0, 0.6);
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 
 .section-title {
@@ -266,11 +275,6 @@ section {
 .detailed-info {
 	color: #f0f0f0;
 }
-
-.form-control {
-
-}
-
 .form-control:focus {
 	border-color: #ffc451 !important;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px

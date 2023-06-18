@@ -11,10 +11,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/common.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/page/account.css">
+	href="${pageContext.request.contextPath}/css/page/top.css">
 
 <!-- Favicons -->
 <link href="${pageContext.request.contextPath}/assets/img/favicon.png"
@@ -60,51 +61,46 @@
 		<jsp:param name="loginUser" value="${loginUser}" />
 	</jsp:include>
 
-	<section id="account"
+	<section id="hero"
 		class="d-flex align-items-center justify-content-center">
 		<div class="container" data-aos="fade-up">
-			<c:choose>
-				<c:when test="${loggedIn}">
-					<div class="row justify-content-center" data-aos="fade-up"
-						data-aos-delay="150">
-						<div class="col-xl-6 col-lg-8">
-							<h1>
-								アカウント管理<span>.</span>
-							</h1>
-						</div>
-					</div>
-					<!-- <a href="logout" class="nav-link">ログアウト</a> -->
 
-					<div class="row gy-4 mt-5 justify-content-center"
-						data-aos="zoom-in" data-aos-delay="250">
-						<div class="col-xl-2 col-md-4">
-							<a href="account-details" class="box-link">
-								<div class="icon-box">
-									<i class="ri-profile-fill"></i>
-									<h3>マイページ</h3>
-								</div>
-							</a>
-						</div>
+			<div class="row justify-content-center" data-aos="fade-up"
+				data-aos-delay="150">
+				<div class="col-xl-6 col-lg-8">
+					<h1>
+						貸出 / 返却<span>.</span>
+					</h1>
+				</div>
+			</div>
 
-						<div class="col-xl-2 col-md-4">
-							<a href="logout" class="box-link">
-								<div class="icon-box">
-									<i class="ri-logout-circle-line"></i>
-									<h3>ログアウト</h3>
-								</div>
-							</a>
+			<div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in"
+				data-aos-delay="250">
+				<div class="col-xl-2 col-md-4">
+					<a href="lend-book" class="box-link">
+						<div class="icon-box">
+							<i class="ri-logout-box-line"></i>
+							<h3>貸出</h3>
 						</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<a href="login-register" class="nav-link">ログイン／登録</a>
-				</c:otherwise>
-			</c:choose>
+					</a>
+				</div>
+				<div class="col-xl-2 col-md-4">
+					<a href="return-book" class="box-link">
+						<div class="icon-box">
+							<i class="ri-login-box-line"></i>
+							<h3>返却</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+
 		</div>
 	</section>
 
-	<div id="preloader"></div>
 
+
+	<div id="preloader"></div>
+	<!-- Vendor JS Files -->
 	<script
 		src="${pageContext.request.contextPath}assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<script
@@ -124,4 +120,5 @@
 	<script src="${pageContext.request.contextPath}/js/common/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 </body>
+
 </html>

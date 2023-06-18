@@ -76,7 +76,9 @@
 					<h1>
 						Value Biblio<span>.</span>
 					</h1>
-					<h2><span class="custom-font">100</span><span>万冊</span>と<span>泊</span>まる</h2>
+					<h2>
+						<span class="custom-font">100</span><span>万冊</span>と<span>泊</span>まる
+					</h2>
 				</div>
 			</div>
 
@@ -92,18 +94,10 @@
 				</div>
 				<c:if test="${loggedIn}">
 					<div class="col-xl-2 col-md-4">
-						<a href="lend-book" class="box-link">
+						<a href="book-transaction" class="box-link">
 							<div class="icon-box">
-								<i class="ri-logout-box-line"></i>
-								<h3>借りる</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-md-4">
-						<a href="return-book" class="box-link">
-							<div class="icon-box">
-								<i class="ri-login-box-line"></i>
-								<h3>返す</h3>
+								<i class="ri-arrow-left-right-line"></i>
+								<h3>貸出 / 返却</h3>
 							</div>
 						</a>
 					</div>

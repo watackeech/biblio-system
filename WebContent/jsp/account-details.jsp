@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ page import="DTOs.User"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>Results from all books</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/common.css">
 <link rel="stylesheet" type="text/css"
@@ -52,9 +49,11 @@
 	rel="stylesheet">
 </head>
 <body>
+
 	<div class="background-container"></div>
-	<c:set var="loggedIn" value="${sessionScope.loggedIn}" />
 	<c:set var="loginUser" value="${sessionScope.loginUser}" />
+	<c:set var="loggedIn" value="${sessionScope.loggedIn}" scope="request" />
+
 	<jsp:include page="common/header.jsp">
 		<jsp:param name="loggedIn" value="${loggedIn}" />
 		<jsp:param name="loginUser" value="${loginUser}" />
@@ -63,65 +62,23 @@
 	<section id="account"
 		class="d-flex align-items-center justify-content-center">
 		<div class="container" data-aos="fade-up">
-			<c:choose>
-				<c:when test="${loggedIn}">
-					<div class="row justify-content-center" data-aos="fade-up"
-						data-aos-delay="150">
-						<div class="col-xl-6 col-lg-8">
-							<h1>
-								アカウント管理<span>.</span>
-							</h1>
-						</div>
-					</div>
-					<!-- <a href="logout" class="nav-link">ログアウト</a> -->
-
-					<div class="row gy-4 mt-5 justify-content-center"
-						data-aos="zoom-in" data-aos-delay="250">
-						<div class="col-xl-2 col-md-4">
-							<a href="account-details" class="box-link">
-								<div class="icon-box">
-									<i class="ri-profile-fill"></i>
-									<h3>マイページ</h3>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-xl-2 col-md-4">
-							<a href="logout" class="box-link">
-								<div class="icon-box">
-									<i class="ri-logout-circle-line"></i>
-									<h3>ログアウト</h3>
-								</div>
-							</a>
-						</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<a href="login-register" class="nav-link">ログイン／登録</a>
-				</c:otherwise>
-			</c:choose>
+			<div class="row justify-content-center" data-aos="fade-up"
+				data-aos-delay="150">
+				<div class="col-xl-6 col-lg-8">
+					<h1>
+						工事中<span>.</span>
+					</h1>
+				</div>
+			</div>
 		</div>
 	</section>
-
 	<div id="preloader"></div>
 
+	<!-- https://bbbootstrap.com/snippets/product-list-65909871# -->
 	<script
-		src="${pageContext.request.contextPath}assets/vendor/purecounter/purecounter_vanilla.js"></script>
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/assets/vendor/aos/aos.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/glightbox/js/glightbox.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/swiper/swiper-bundle.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/php-email-form/validate.js"></script>
-
-	<!-- Template Main JS File -->
-	<script src="${pageContext.request.contextPath}/js/common/header.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
 </body>
 </html>
