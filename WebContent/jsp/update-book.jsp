@@ -18,6 +18,29 @@
 	href="${pageContext.request.contextPath}/css/page/login-register.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/common/common.css">
+
+	<!-- Vendor CSS Files -->
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/aos/aos.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/boxicons/css/boxicons.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/remixicon/remixicon.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/swiper/swiper-bundle.min.css"
+	rel="stylesheet">
 </head>
 <body>
 <%-- 	<jsp:include page="common/header.jsp">
@@ -25,10 +48,12 @@
 		<jsp:param name="loginUser" value="${loginUser}" />
 	</jsp:include> --%>
 	<div class="background-container"></div>
+
+
 	<div class="container">
-		<div class="form-container" id="loginFormContainer">
+		<div class="form-container" id="update-book-container">
 			<h2 class="text-center mb-4">書籍情報の更新！</h2>
-			<form id="loginForm">
+			<form id="update-book-form">
 				<input type="hidden" name="bookId" value="${book.id }">
 
 				<div class="form-floating mb-3 mt-3">
@@ -74,8 +99,8 @@
 				</div>
 
 				<button type="submit" formaction="update-book" formmethod="post" name="action" value="update"
-					id="login-button" class="btn btn-primary btn-block">書籍情報を更新！</button>
-					<button type="submit" formaction="update-book" formmethod="post" name="action" value="delete" class="btn btn-danger btn-block">書籍を削除する</button>
+					id="login-button" class="btn btn-outline-primary btn-block">書籍情報を更新！</button>
+					<button type="submit" formaction="update-book" formmethod="post" name="action" value="delete" class="btn btn-outline-danger btn-block">書籍を削除する</button>
 			</form>
 		</div>
 	</div>

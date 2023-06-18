@@ -1,2 +1,11 @@
 -- 図書の貸し借り・延長を記録するテーブルの作成＆ダミーデータ挿入
 
+CREATE TABLE record (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) references users(student_id),
+  barcode_id VARCHAR(20) NOT NULL,
+  FOREIGN KEY (barcode_id) references book_master(id),
+  start_date date NOT NULL,
+  end_date date NOT NULL
+);

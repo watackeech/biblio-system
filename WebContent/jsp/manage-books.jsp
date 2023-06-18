@@ -85,7 +85,7 @@
 					</a>
 				</div>
 				<div class="col-xl-2 col-md-4">
-					<a href="search-books" class="box-link">
+					<a href="search-update" class="box-link">
 						<div class="icon-box">
 							<i class="ri-loop-left-fill"></i>
 							<h3>情報修正</h3>

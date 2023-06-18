@@ -1,4 +1,9 @@
---テーブル作成＆ダミーデータを挿入
+-- すべてのテーブルが作成されます
+
+
+CREATE USER kiichi with password 'kiichi';
+CREATE DATABASE valuebiblio;
+
 
 CREATE TABLE book_master (
   id VARCHAR(20) PRIMARY KEY,
@@ -38,3 +43,129 @@ BEGIN TRANSACTION;
 また、田沼意次その人だけを描くだけでなくその時代の生活と、周囲の人々も描かれている。', 2, 2, 'https://m.media-amazon.com/images/I/413Vmf0IOTL._SY346_.jpg');
 
 COMMIT;
+
+
+CREATE TABLE books (
+  barcode_id VARCHAR(20) PRIMARY KEY,
+  master_id VARCHAR(20) NOT NULL,
+  FOREIGN KEY (master_id) references book_master(id),
+  status VARCHAR(15) DEFAULT 'in_stock'
+);
+
+INSERT INTO books (barcode_id, master_id, status)
+VALUES
+(1000, 1482630471090, 'borrowed'),
+(1001, 1482630471090, 'borrowed'),
+(1002, 1482630471090, 'in_stock'),
+(1003, 1482630471090, 'in_stock'),
+(1004, 1482630471091, 'borrowed'),
+(1005, 1482630471091, 'in_stock'),
+(1006, 1482630471091, 'in_stock'),
+(1007, 1482630471092, 'borrowed'),
+(1008, 1482630471092, 'in_stock'),
+(1009, 1482630471092, 'borrowed'),
+(1010, 1482630471092, 'borrowed'),
+(1011, 1482630471092, 'borrowed'),
+(1012, 1482630471092, 'borrowed'),
+(1013, 1482630471092, 'borrowed'),
+(1014, 1482630471093, 'borrowed'),
+(1015, 1482630471093, 'borrowed'),
+(1016, 1482630471093, 'borrowed'),
+(1017, 1482630471093, 'in_stock'),
+(1018, 1482630471094, 'in_stock'),
+(1019, 1482630471094, 'in_stock'),
+(1020, 1482630471094, 'borrowed'),
+(1021, 1482630471095, 'in_stock'),
+(1022, 1482630471095, 'borrowed'),
+(1023, 1482630471095, 'in_stock'),
+(1024, 1482630471095, 'in_stock'),
+(1025, 1482630471096, 'in_stock'),
+(1026, 1482630471096, 'borrowed'),
+(1027, 1482630471096, 'in_stock'),
+(1028, 1482630471096, 'borrowed'),
+(1029, 1482630471096, 'borrowed'),
+(1030, 1482630471097, 'borrowed'),
+(1031, 1482630471097, 'borrowed'),
+(1032, 1482630471097, 'in_stock'),
+(1033, 1482630471098, 'borrowed'),
+(1034, 1482630471098, 'borrowed'),
+(1035, 1482630471098, 'borrowed'),
+(1036, 1482630471099, 'borrowed'),
+(1037, 1482630471099, 'borrowed'),
+(1038, 1482630471081, 'borrowed'),
+(1039, 1482630471082, 'borrowed'),
+(1040, 1482630471082, 'borrowed'),
+(1041, 1482630471082, 'borrowed'),
+(1042, 1482630471082, 'borrowed'),
+(1043, 1482630471083, 'borrowed'),
+(1044, 1482630471083, 'in_stock'),
+(1045, 1482630471084, 'in_stock'),
+(1046, 1482630471084, 'in_stock'),
+(1047, 1482630471084, 'in_stock'),
+(1048, 1482630471085, 'in_stock'),
+(1049, 1482630471086, 'borrowed'),
+(1050, 1482630471086, 'in_stock'),
+(1051, 1482630471086, 'in_stock'),
+(1052, 1482630471087, 'borrowed'),
+(1053, 1482630471087, 'borrowed'),
+(1054, 1482630471087, 'borrowed'),
+(1055, 1482630471087, 'in_stock'),
+(1056, 1482630471088, 'borrowed'),
+(1057, 1482630471088, 'in_stock'),
+(1058, 1482630471088, 'borrowed'),
+(1059, 1482630471088, 'borrowed'),
+(1060, 1482630471073, 'in_stock'),
+(1061, 1482630471073, 'borrowed'),
+(1062, 1482630471073, 'in_stock'),
+(1063, 1482630471073, 'borrowed'),
+(1064, 1482630471089, 'in_stock'),
+(1065, 1482630471089, 'in_stock');
+
+
+-- total_stockとcurrent_stockを更新するUPDATE文
+UPDATE book_master
+SET
+  total_stock = (
+    SELECT COUNT(*)
+    FROM books
+    WHERE books.master_id = book_master.id
+  ),
+  current_stock = (
+    SELECT COUNT(*)
+    FROM books
+    WHERE books.master_id = book_master.id
+      AND books.status = 'in_stock'
+  );
+
+
+    CREATE TABLE users (
+    student_id INTEGER PRIMARY KEY,
+    password VARCHAR(31),
+    name VARCHAR(63),
+    status VARCHAR(63)
+    -- grade INTEGER
+    );
+
+    INSERT INTO users (student_id, password, name, status)
+    VALUES
+    (1234, 'lion1234', 'サトウ', 'normal'),
+    (7438, 'tiger456', 'タナカ', 'super'),
+    (4309, 'elephant789', 'イシカワ', 'normal'),
+    (4129, 'giraffe012', 'ヤマモト', 'removed'),
+    (4319, 'zebra345', 'スズキ', 'normal'),
+    (4044, 'monkey678', 'ワタナベ', 'normal'),
+    (4303, 'panda901', 'クマモト', 'normal'),
+    (1135, 'koala234', 'キムラ', 'normal'),
+    (6522, 'hippo567', 'ナカジマ', 'normal'),
+    (6432, 'rhino890', 'カワムラ', 'red');
+
+
+CREATE TABLE record (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) references users(student_id),
+  barcode_id VARCHAR(20) NOT NULL,
+  FOREIGN KEY (barcode_id) references books(barcode_id),
+  start_date date NOT NULL,
+  end_date date
+);

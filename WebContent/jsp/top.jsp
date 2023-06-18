@@ -57,7 +57,7 @@
 </head>
 <body>
 	<div class="background-container"></div>
-<%-- 	<c:set var="loggedIn" value="${sessionScope.loggedIn}" /> --%>
+
 	<c:set var="loginUser" value="${sessionScope.loginUser}" />
 	<c:set var="loggedIn" value="${sessionScope.loggedIn}" scope="request" />
 

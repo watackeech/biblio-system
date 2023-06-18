@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import DAOs.BookMasterDAO;
 import DAOs.ConnectionManager;
 import DTOs.BookMaster;
+import DTOs.User;
 
 /**
  * Servlet implementation class RegisterBookServlet
@@ -35,17 +36,20 @@ public class RegisterBookServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//		HttpSession session = request.getSession();
-		//		boolean loggedIn = (boolean) session.getAttribute("loggedIn");
-		//		User loginUser = (User) session.getAttribute("loginUser");
-		//		String status = loginUser.getStatus();
-		//		System.out.println(status);
-		//		if(status.equals("super")) {
-		if (true) {
-			System.out.println("正常に読み込み完了！");
+		HttpSession session = request.getSession();
+		//sessionにログイン情報がない場合→ログインページにリダイレクト
+		if (session.getAttribute("loggedIn") == null || session.getAttribute("loginUser") == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/login-register.jsp");
+			dispatcher.forward(request, response);
+		}
+		boolean loggedIn = (boolean) session.getAttribute("loggedIn");
+		User loginUser = (User) session.getAttribute("loginUser");
+		String status = loginUser.getStatus();
+		System.out.println(status);
+		if(status.equals("super")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/register-book.jsp");
 			dispatcher.forward(request, response);
-		} else {
+		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/top.jsp");
 			dispatcher.forward(request, response);
 		}

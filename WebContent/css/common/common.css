@@ -83,13 +83,11 @@ h1, h2, h3, h4, h5, h6 {
 	animation: animate-preloader 1s linear infinite;
 }
 
-@
-keyframes animate-preloader { 0% {
+@keyframes animate-preloader { 0% {
 	transform: rotate(0deg);
 }
 
-100
-%
+100%
 {
 transform
 :
@@ -98,6 +96,8 @@ rotate(
 );
 }
 }
+
+
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
@@ -232,6 +232,27 @@ section {
 	color: #ffc451 !important;
 }
 
+.btn-outline-danger {
+	border-color: #ff4040 !important;
+	color: #ff4040 !important;
+}
+
+.btn-outline-danger:hover {
+	background-color: #ff4040 !important;
+	border-color: #ff4040 !important;
+	color: #343a40 !important;
+}
+
+.btn-outline-danger:active {
+	background-color: #ff4040 !important;
+	border-color: #ff4040 !important;
+	color: #fff !important;
+}
+
+.btn-outline-danger:visited {
+	color: #ff4040 !important;
+}
+
 .list-group-item {
 	background-color: rgba(92, 92, 92, 0.7) !important;
 	border: 1px solid rgba(255, 255, 255, 0.125) !important;
@@ -246,17 +267,23 @@ section {
 	color: #f0f0f0;
 }
 
-
 .form-control {
 
 }
+
 .form-control:focus {
 	border-color: #ffc451 !important;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 187, 56, 0.6) !important;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
+		rgba(255, 187, 56, 0.6) !important;
 }
 
-.form-floating label {
+
+.form-container {
+	background-color: rgba(92, 92, 92, 0.7) !important;
+	border: 1px solid rgba(255, 255, 255, 0.125) !important;
+	color: white !important;
 }
 
-
-
+label{
+	color: rgb(164,164,164) !important;
+}

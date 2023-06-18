@@ -32,12 +32,16 @@ public class ManageBooksServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		//sessionにログイン情報がない場合→ログインページにリダイレクト
+		if (session.getAttribute("loggedIn") == null || session.getAttribute("loginUser") == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/login-register.jsp");
+			dispatcher.forward(request, response);
+		}
 		boolean loggedIn = (boolean) session.getAttribute("loggedIn");
 		User loginUser = (User) session.getAttribute("loginUser");
 		String status = loginUser.getStatus();
 		System.out.println(status);
 		if(status.equals("super")) {
-			System.out.println("正常に読み込み完了！");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/manage-books.jsp");
 			dispatcher.forward(request, response);
 		}else {

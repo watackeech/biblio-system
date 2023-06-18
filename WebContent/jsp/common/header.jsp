@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,12 +48,11 @@
 
 </head>
 
-<body>
 
+<body>
 	<header id="header" class="fixed-top ">
 		<div
 			class="container d-flex align-items-center justify-content-lg-between">
-
 			<h1 class="logo me-auto me-lg-0">
 				<a href="top">VB<span>.</span></a>
 			</h1>
@@ -61,33 +61,32 @@
 
 			<nav id="navbar" class="navbar order-last order-lg-0">
 				<ul>
-					<li><a class="nav-link scrollto" href="#hero">Home</a></li>
-					<li><a class="nav-link scrollto" href="#about">About</a></li>
-					<li class="dropdown"><a href="#"><span>Drop Down</span> <i
-							class="bi bi-chevron-down"></i></a>
-						<ul>
-							<li><a href="#">Drop Down 1</a></li>
-							<li class="dropdown"><a href="#"><span>Deep Drop
-										Down</span> <i class="bi bi-chevron-right"></i></a>
+					<!-- 					<li><a class="nav-link scrollto" href="#hero">Home</a></li> -->
+					<li><a class="nav-link scrollto" href="find">探す</a></li>
+					<c:if test="${loggedIn}">
+						<li class="dropdown"><a href="top">貸出/返却 <i
+								class="bi bi-chevron-down"></i></a>
+							<ul>
+								<li><a href="lend-book">貸出</a></li>
+								<li><a href="return-book">返却</a></li>
+							</ul></li>
+						<c:if test="${loginUser.status =='super'}">
+							<li class="dropdown"><a href="manage-books">書籍管理 <i
+									class="bi bi-chevron-down"></i></a>
 								<ul>
-									<li><a href="#">Deep Drop Down 1</a></li>
-									<li><a href="#">Deep Drop Down 2</a></li>
-									<li><a href="#">Deep Drop Down 3</a></li>
-									<li><a href="#">Deep Drop Down 4</a></li>
-									<li><a href="#">Deep Drop Down 5</a></li>
+									<li><a href="register-book">書籍登録</a></li>
+									<li><a href="search-update">書籍情報更新</a></li>
 								</ul></li>
-							<li><a href="#">Drop Down 2</a></li>
-							<li><a href="#">Drop Down 3</a></li>
-							<li><a href="#">Drop Down 4</a></li>
-						</ul></li>
-					<li><c:choose>
+						</c:if>
+					</c:if>
+					<%-- 					<li><c:choose>
 							<c:when test="${loggedIn}">
 								<a href="logout" class="nav-link">ログアウト</a>
 							</c:when>
 							<c:otherwise>
 								<a href="login-register" class="nav-link">ログイン／登録</a>
 							</c:otherwise>
-						</c:choose></li>
+						</c:choose></li> --%>
 				</ul>
 				<i class="bi bi-list mobile-nav-toggle"></i>
 			</nav>
