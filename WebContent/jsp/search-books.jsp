@@ -53,29 +53,32 @@
 		<div class="container py-5">
 
 
-<div class="row">
-	<div class="col-lg-8 mx-auto search-box shadow p-4 rounded">
-		<form class="row">
-			<div class="col-md-6 mb-3">
-				<div class="form-floating">
-					<input type="text" class="form-control" id="title" name="title" placeholder="書籍名を入力してください">
-					<label for="title">書籍のタイトル</label>
+			<div class="row">
+				<div class="col-lg-8 mx-auto search-box shadow p-4 rounded">
+					<form class="row">
+						<div class="col-md-6 mb-3">
+							<div class="form-floating">
+								<input type="text" class="form-control" id="title" name="title"
+									placeholder="書籍名を入力してください"> <label for="title">書籍のタイトル</label>
+							</div>
+						</div>
+						<div class="col-md-6 mb-3">
+							<div class="form-floating">
+								<input type="text" class="form-control" id="author"
+									name="author" placeholder="著者名を入力してください"> <label
+									for="author">著者名</label>
+							</div>
+						</div>
+						<div class="col-md-12 d-flex justify-content-center">
+							<button type="submit" id="search-button"
+								class="btn btn-outline-primary" formaction="search-books"
+								formmethod="post">検索</button>
+						</div>
+					</form>
 				</div>
 			</div>
-			<div class="col-md-6 mb-3">
-				<div class="form-floating">
-					<input type="text" class="form-control" id="author" name="author" placeholder="著者名を入力してください">
-					<label for="author">著者名</label>
-				</div>
-			</div>
-			<div class="col-md-12 d-flex justify-content-center">
-				<button type="submit" id="search-button" class="btn btn-outline-primary" formaction="search-books" formmethod="post">検索</button>
-			</div>
-		</form>
-	</div>
-</div>
 
-		<div class="mt-4"></div>
+			<div class="mt-4"></div>
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
 					<!-- List group-->
@@ -116,7 +119,7 @@
 									<form>
 										<input type="hidden" name="bookId" value="${book.id}">
 										<button type="submit" class="btn btn-outline-primary btn-sm"
-											formaction="update-book" formmethod="get">
+											formaction="details" formmethod="get">
 											<i class="ri-login-box-line"></i> 詳細
 										</button>
 									</form>

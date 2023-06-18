@@ -117,7 +117,7 @@
 										<input type="hidden" name="bookId" value="${book.id}">
 										<button type="submit" class="btn btn-outline-primary btn-sm"
 											formaction="update-book" formmethod="get">
-											<i class="ri-login-box-line"></i> 詳細
+											<i class="ri-edit-2-fill"></i> 修正
 										</button>
 									</form>
 								</div>

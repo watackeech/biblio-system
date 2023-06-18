@@ -10,13 +10,14 @@ public class BookMaster {
     private String category;
     private String description;
     private String image;
+    private String location;
 
     public BookMaster() {
     }
 
     public BookMaster(String id, String title, String author, Integer currentStock, Integer totalStock,
             Integer publicationYear,
-            String category, String description, String image) {
+            String category, String description, String image, String location) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -26,6 +27,7 @@ public class BookMaster {
         this.category = category;
         this.description = description;
         this.image = image;
+        this.setLocation(location);
     }
 
     public String getId() {
@@ -99,4 +101,12 @@ public class BookMaster {
     public void setImage(String image) {
         this.image = image;
     }
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

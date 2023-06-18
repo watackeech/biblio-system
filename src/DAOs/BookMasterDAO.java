@@ -24,7 +24,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 
 	    try {
 	    	con.setAutoCommit(false);
-	        String sql = "INSERT INTO book_master (id, title, author, publication_year, description, image, current_stock, total_stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        String sql = "INSERT INTO book_master (id, title, author, publication_year, description, image, current_stock, total_stock, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	        preparedStatement = con.prepareStatement(sql);
 	        preparedStatement.setString(1, entity.getId());
 	        preparedStatement.setString(2, entity.getTitle());
@@ -34,6 +34,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 	        preparedStatement.setString(6, entity.getImage());
 	        preparedStatement.setInt(7, 1); // 新規追加された本は、stockが1つ
 	        preparedStatement.setInt(8, 1);
+	        preparedStatement.setString(9, entity.getLocation());
 	        preparedStatement.executeUpdate();
 	        con.commit();
 	    } catch (SQLException e) {
@@ -173,6 +174,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				String image = resultSet.getString("image");
 				Integer currentStock = Integer.parseInt(resultSet.getString("current_stock"));
 				Integer totalStock = Integer.parseInt(resultSet.getString("total_stock"));
+				String location = resultSet.getString("location");
 				bookMaster.setId(id);
 				bookMaster.setTitle(title);
 				bookMaster.setAuthor(author);
@@ -181,6 +183,7 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				bookMaster.setImage(image);
 				bookMaster.setCurrentStock(currentStock);
 				bookMaster.setTotalStock(totalStock);
+				bookMaster.setLocation(location);
 			};
 
 			return bookMaster;
@@ -219,10 +222,11 @@ public class BookMasterDAO implements DAO<BookMaster> {
 				String category = resultSet.getString("category");
 				String description = resultSet.getString("description");
 				String image = resultSet.getString("image");
+				String location = resultSet.getString("location");
 
 				// Create a new BookMaster object using the retrieved data
 				BookMaster book = new BookMaster(id, title, author, currentStock, totalStock, publicationYear,
-						category, description, image);
+						category, description, image, location);
 
 				// Add the BookMaster object to the result list
 				result.add(book);
@@ -330,10 +334,11 @@ public class BookMasterDAO implements DAO<BookMaster> {
 					String category = resultSet.getString("category");
 					String description = resultSet.getString("description");
 					String image = resultSet.getString("image");
+					String location = resultSet.getString("location");
 
 					// Create a new BookMaster object using the retrieved data
 					BookMaster book = new BookMaster(id, title, author, currentStock, totalStock,
-							publicationYear, category, description, image);
+							publicationYear, category, description, image, location);
 
 					// Add the BookMaster object to the result list
 					result.add(book);

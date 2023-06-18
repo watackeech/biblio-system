@@ -22,7 +22,7 @@
 	<div class="background-container"></div>
 	<!-- 	<div class="container"> -->
 	<div class="form-container" id="loginFormContainer">
-		<h2 class="text-center mb-4">ログイン！</h2>
+		<h2 class="text-center mb-4 box-title">ログイン！</h2>
 		<form id="loginForm">
 			<div class="form-group">
 				<label for="student-id">学生番号</label> <input type="text"
@@ -41,7 +41,7 @@
 		</form>
 	</div>
 	<div class="form-container hidden" id="registrationFormContainer">
-		<h2 class="text-center mb-4">新規登録！</h2>
+		<h2 class="text-center mb-4 box-title">新規登録！</h2>
 		<form id="registrationForm">
 			<div class="form-group">
 				<label for="regUsername">名前</label> <input type="text"
