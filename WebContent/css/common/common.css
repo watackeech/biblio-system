@@ -83,11 +83,13 @@ h1, h2, h3, h4, h5, h6 {
 	animation: animate-preloader 1s linear infinite;
 }
 
-@keyframes animate-preloader { 0% {
+@
+keyframes animate-preloader { 0% {
 	transform: rotate(0deg);
 }
 
-100%
+100
+%
 {
 transform
 :
@@ -96,8 +98,6 @@ rotate(
 );
 }
 }
-
-
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
@@ -277,16 +277,23 @@ section {
 		rgba(255, 187, 56, 0.6) !important;
 }
 
-
 .form-container {
 	background-color: rgba(92, 92, 92, 0.7) !important;
 	border: 1px solid rgba(255, 255, 255, 0.125) !important;
 	color: white !important;
 }
 
-label{
-	color: rgb(164,164,164) !important;
+label {
+	color: rgb(164, 164, 164) !important;
 }
-.box-title{
-color: white !important;
+
+.box-title {
+	color: white !important;
+}
+
+.available{
+	background-color: #274C77 !important;
+}
+.unavailable{
+	background-color: #A72608 !important;
 }

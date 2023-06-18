@@ -84,9 +84,9 @@
 					<!-- List group-->
 					<ul class="list-group shadow">
 						<c:forEach var="book" items="${books}">
-							<li class="list-group-item">
+							<li class="list-group-item ">
 								<div
-									class="media align-items-center flex-column flex-lg-row p-3">
+									class="media align-items-center d-flex justify-content-between">
 									<img src="${book.image}" alt="Book Image" class="mr-3"
 										style="width: 100px;">
 									<div class="media-body">
@@ -116,13 +116,24 @@
 
 										</div>
 									</div>
-									<form>
-										<input type="hidden" name="bookId" value="${book.id}">
-										<button type="submit" class="btn btn-outline-primary btn-sm"
-											formaction="details" formmethod="get">
-											<i class="ri-login-box-line"></i> 詳細
-										</button>
-									</form>
+									<div class="col-lg-2">
+										<h5>
+											<c:if test="${book.currentStock > 0}">
+											<span class="available badge badge-secondary font-weight-normal">在庫あり！</span>
+											</c:if>
+											<c:if test="${book.currentStock == 0}">
+											<span class="unavailable badge badge-secondary font-weight-normal">在庫なし...</span>
+											</c:if>
+										</h5>
+										<form>
+											<input type="hidden" name="bookId" value="${book.id}">
+											<button type="submit" class="btn btn-outline-primary btn-sm"
+												formaction="details" formmethod="get">
+												<i class="ri-login-box-line"></i> 詳細
+											</button>
+										</form>
+									</div>
+
 								</div>
 							</li>
 
