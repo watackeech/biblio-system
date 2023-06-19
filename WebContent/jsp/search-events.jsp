@@ -79,34 +79,34 @@
 				<div class="col-lg-8 mx-auto">
 					<!-- List group-->
 					<ul class="list-group shadow">
-						<c:forEach var="book" items="${books}">
+						<c:forEach var="event" items="${events}">
 							<li class="list-group-item ">
 								<div
 									class="media align-items-center d-flex justify-content-between">
-									<img src="${book.image}" alt="Book Image" class="mr-3"
+									<img src="${event.image}" alt="Book Image" class="mr-3"
 										style="width: 100px;">
 									<div class="media-body">
 										<div class="row">
 											<div class="col-lg-6 d-flex align-items-center">
 												<h3
-													class="mt-0 font-weight-bold mb-2 text-center text-lg-left">${book.title}</h3>
+													class="mt-0 font-weight-bold mb-2 text-center text-lg-left">${event.eventTitle}</h3>
 											</div>
 											<!-- 											<div
 												class="col-lg-6 d-flex align-items-center justify-content-between"> -->
 											<div class="row">
 												<div class="col">
-													<p class="font-weight-bold mb-0 detailed-info">${book.author}</p>
+													<p class="font-weight-bold mb-0 detailed-info">${event.startTime}</p>
 												</div>
 												<div class="col">
-													<p class="font-weight-bold mb-0 detailed-info">${book.publicationYear}</p>
+													<p class="font-weight-bold mb-0 detailed-info">${event.endTime}</p>
 												</div>
 												<div class="col">
 													<p class="font-weight-bold mb-0 detailed-info">貸出可能:
-														${book.currentStock}</p>
+														${event.currentParticipants}</p>
 												</div>
 												<div class="col">
 													<p class="font-weight-bold mb-0 detailed-info">総在庫:
-														${book.totalStock}</p>
+														${event.maxCap}</p>
 												</div>
 											</div>
 
@@ -114,10 +114,10 @@
 									</div>
 									<div class="col-lg-2">
 										<h5>
-											<c:if test="${book.currentStock > 0}">
+											<c:if test="${event.currentParticipants < event.maxCap}">
 											<span class="available badge badge-secondary font-weight-normal">在庫あり！</span>
 											</c:if>
-											<c:if test="${book.currentStock == 0}">
+											<c:if test="${event.currentParticipants >= event.maxCap}">
 											<span class="unavailable badge badge-secondary font-weight-normal">在庫なし...</span>
 											</c:if>
 										</h5>

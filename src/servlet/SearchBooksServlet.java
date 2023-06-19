@@ -35,7 +35,6 @@ public class SearchBooksServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ConnectionManager connectionManager = new ConnectionManager();
-         // BookMasterDAOのインスタンスを作成
 
         try {
         	Connection con = connectionManager.getConnection();

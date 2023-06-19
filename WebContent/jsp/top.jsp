@@ -85,6 +85,14 @@
 			<div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in"
 				data-aos-delay="250">
 				<div class="col-xl-2 col-md-4">
+					<a href="search-events" class="box-link">
+						<div class="icon-box">
+							<i class="ri-calendar-event-fill"></i>
+							<h3>イベント</h3>
+						</div>
+					</a>
+				</div>
+				<div class="col-xl-2 col-md-4">
 					<a href="search-books" class="box-link">
 						<div class="icon-box">
 							<i class="ri-search-2-line"></i>
@@ -92,6 +100,7 @@
 						</div>
 					</a>
 				</div>
+
 				<c:if test="${loggedIn}">
 					<div class="col-xl-2 col-md-4">
 						<a href="book-transaction" class="box-link">

@@ -45,6 +45,27 @@ BEGIN TRANSACTION;
 
 COMMIT;
 
+CREATE TABLE users (
+    student_id INTEGER PRIMARY KEY,
+    password VARCHAR(31),
+    name VARCHAR(63),
+    status VARCHAR(63)
+    -- grade INTEGER
+    );
+
+    INSERT INTO users (student_id, password, name, status)
+    VALUES
+    (1234, 'lion1234', 'サトウ', 'normal'),
+    (7438, 'tiger456', 'タナカ', 'super'),
+    (4309, 'elephant789', 'イシカワ', 'normal'),
+    (4129, 'giraffe012', 'ヤマモト', 'removed'),
+    (4319, 'zebra345', 'スズキ', 'normal'),
+    (4044, 'monkey678', 'ワタナベ', 'normal'),
+    (4303, 'panda901', 'クマモト', 'normal'),
+    (1135, 'koala234', 'キムラ', 'normal'),
+    (6522, 'hippo567', 'ナカジマ', 'normal'),
+    (6432, 'rhino890', 'カワムラ', 'red');
+
 
 CREATE TABLE books (
   barcode_id VARCHAR(20) PRIMARY KEY,
@@ -170,3 +191,25 @@ CREATE TABLE record (
   start_date date NOT NULL,
   end_date date
 );
+
+
+CREATE TABLE event (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) references users(student_id),
+  event_title VARCHAR(123) NOT NULL,
+  summary VARCHAR(255),
+  max_cap INTEGER,
+  current_participants INTEGER,
+  start_time TIMESTAMP NOT NULL,
+  end_time TIMESTAMP NOT NULL,
+  image VARCHAR(255)
+);
+
+INSERT INTO event (user_id, event_title, summary, max_cap, current_participants, start_time, end_time, image)
+VALUES
+(1234, '「愛するということ」について語りたい！！', 'エーリッヒ・フロムの「愛するということ」についてお酒を飲みながらダラダラお喋りしたいです！他の本を引用して話が脱線することも大歓迎なので、皆さんお好きな本を自由に借りてきてださい！！', 6, 2, '2023-06-24 20:00', '2023-06-24 23:00', 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3870&q=80'),
+(7438, '古本トレジャーハント！巨大倉庫で謎解き！', 'てすとおおお', 30, 22, '2023-06-25 10:00', '2023-06-25 12:00', 'https://images.unsplash.com/photo-1470506926202-05d3fca84c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80'),
+(4044, '俺の大好きな本を読んでくれ！！推し本プレゼン大会！', 'てすとおおお', 10, 10, '2023-06-26 14:00', '2023-06-26 16:00', 'https://images.unsplash.com/photo-1560523159-6b681a1e1852?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3870&q=80'),
+(1135, '来たれ！森見登美彦大好き芸人の集い！', 'あああ', 5, 2, '2023-06-27 18:00', '2023-06-27 20:00', 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3870&q=80'),
+(6432, 'サン・ジョルディの日！大好きな本交換会！', 'せつめい', 6, 4, '2023-06-28 08:00', '2023-06-28 10:00', 'https://images.unsplash.com/photo-1514192631-251f5f0b14f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80');
