@@ -148,6 +148,7 @@
 	<!-- Template Main JS File -->
 	<script src="${pageContext.request.contextPath}/js/common/header.js"></script>
 	<script src="${pageContext.request.contextPath}/js/common/common.js"></script>
+	<script src="${pageContext.request.contextPath}/js/common/wavy-top.js"></script>
 </body>
 
 </html>
